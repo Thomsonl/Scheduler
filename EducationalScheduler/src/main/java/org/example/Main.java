@@ -41,7 +41,7 @@ public class Main {
                 row.createCell(4).setCellValue(account.getID());
             }
             //Save the workbook to a file
-            String relativePath = "Scheduler\\EducationalScheduler\\src\\main\\resources\\sheet.xlsx";
+            String relativePath = "EducationalScheduler\\src\\main\\resources\\sheet.xlsx";
             String filePath = System.getProperty("user.dir") + File.separator + relativePath;
             try (FileOutputStream fileOutputStream = new FileOutputStream(filePath)) {
                 workbook.write(fileOutputStream);
