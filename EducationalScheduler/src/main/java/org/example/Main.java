@@ -18,7 +18,7 @@ public class Main {
 
 
         List<Account> AccountInfo = new ArrayList<>();
-        AccountInfo.add(new Account("Jane Doe1","12345678","Jane Doe","02/02/1996","A123"));
+        AccountInfo.add(new Account("Jane Doe2","12345678","Jane Doe","02/02/1996","A123"));
 
         try(Workbook workbook = new XSSFWorkbook()){
             Sheet sheet = workbook.createSheet("Account Information");//Create a new sheet
