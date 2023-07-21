@@ -1,5 +1,6 @@
 package org.example;
 
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -40,7 +41,9 @@ public class Main {
                 row.createCell(4).setCellValue(account.getID());
             }
             //Save the workbook to a file
-            try(FileOutputStream fileOutputStream = new FileOutputStream("C:\\Users\\Thomson\\VSCode\\Scheduler\\EducationalScheduler\\src\\main\\resources\\sheet.xlsx")){
+            String relativePath = "Scheduler\\EducationalScheduler\\src\\main\\resources\\sheet.xlsx";
+            String filePath = System.getProperty("user.dir") + File.separator + relativePath;
+            try (FileOutputStream fileOutputStream = new FileOutputStream(filePath)) {
                 workbook.write(fileOutputStream);
             }
         }
