@@ -3,6 +3,7 @@ package org.example;
 public class Account {
     private String Username;
     private String Password;
+    private String Email;
     private String Name;
     private String DateOfBirth;
     private String ID;
@@ -15,12 +16,13 @@ public class Account {
         ID = null;
     }
     //Constructor: initialize all the variables
-    public Account(String theUsername, String thePassword, String theName, String theDate, String theID){
+    public Account(String theUsername, String thePassword, String theEmail, String theName, String theDate){
         Username = theUsername;
         Password = thePassword;
         Name = theName;
         DateOfBirth = theDate;
-        ID = theID;
+        Email = theEmail;
+        ID = null; //TODO: Create function to make a random int (8 digits)
     }
 
     public void setUsername(String theUsername) {
@@ -34,6 +36,12 @@ public class Account {
     }
     public String getPassword(){
         return Password;
+    }
+    public void setEmail(String theEmail){
+        Email = theEmail;
+    }
+    public String getEmail(){
+        return Email;
     }
     public void setName(String theName){
         Name = theName;
