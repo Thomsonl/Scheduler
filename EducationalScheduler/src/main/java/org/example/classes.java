@@ -2,7 +2,6 @@ package org.example;
 
 public class classes {
 	private String ClassName;
-	private double TimeSpend;
 	private String Professor;
 	private int ClassID;
 	private String RoomNum;
@@ -12,17 +11,15 @@ public class classes {
 	public classes()
 	{
 		ClassName=null;
-		TimeSpend=0;
 		Professor=null;
 		ClassID=0;
 		RoomNum=null;
 		MaxOccupancy=0;
 		CurrentOccupancy=0;
 	}
-	public classes(String ClassNamenew, double TimeSpendnew, String Professornew, int ClassIDnew, String RoomNumnew, int MaxOccupancynew, int CurrentOccupancynew)
+	public classes(String ClassNamenew, String Professornew, int ClassIDnew, String RoomNumnew, int MaxOccupancynew, int CurrentOccupancynew)
 	{
 		ClassName=ClassNamenew;
-		TimeSpend=TimeSpendnew;
 		Professor=Professornew;
 		ClassID=ClassIDnew;
 		RoomNum=RoomNumnew;
@@ -32,10 +29,6 @@ public class classes {
 	public void setCN(String a)
 	{
 		ClassName=a;
-	}
-	public void setTs(double a)
-	{
-		TimeSpend=a;
 	}
 	public void setPro(String a)
 	{
@@ -68,10 +61,6 @@ public class classes {
 	public String getRN()
 	{
 		return RoomNum;
-	}
-	public double getTime()
-	{
-		return TimeSpend;
 	}
 	public int getMO()
 	{
