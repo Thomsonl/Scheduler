@@ -4,7 +4,7 @@ package org.example;
 public class timeslot {
 	private long ID;
 	private String[] time= {"8: ","9: ","10: ","11: ","12: ","13: ","14: ","15: ","16: ","17: ","18: ","19: "};
-	private classes[] course=null;
+	private String[] course=null;
 	public timeslot(long id)
 	{
 		ID=id;
@@ -18,8 +18,8 @@ public class timeslot {
 		{
 			return false;
 		}
-		course[a-8]=b;
-		return true; //Probably switch this and run a add occupancy method before adding, should ensure that once added, co is not > than mo
+		course[a-8]=b.getCN();
+		return true;
 	}
 	public long getID()
 	{
@@ -34,13 +34,13 @@ public class timeslot {
 		System.out.println(ID+"'s course:");
 		for(int i=0;i<time.length;i++)
 		{
-			System.out.println(time[i]);
-			course[i].print();
+			System.out.println(time[i]+course[i]);
+			
 		}
 	}
 	public void deletecourse(int a)
 	{
-		course[a-8]=null;
+		course[a-8]="null";
 	}
 	
 }
