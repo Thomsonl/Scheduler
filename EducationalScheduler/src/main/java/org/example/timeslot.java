@@ -3,29 +3,23 @@ package org.example;
 
 public class timeslot {
 	private long ID;
-	private String[][] timeboard=null;
-	public timeslot()
+	private String[] time= {"8: ","9: ","10: ","11: ","12: ","13: ","14: ","15: ","16: ","17: ","18: ","19: "};
+	private classes[] course=null;
+	public timeslot(long id)
 	{
-		ID=0;
-		timeboard=new String[][] 
-				{
-			{"8:  ","null"},
-			{"9:  ","null"},
-			{"10: ","null"},
-			{"11: ","null"},
-			{"12: ","null"},
-			{"13: ","null"},
-			{"14: ","null"},
-			{"15: ","null"},
-			{"16: ","null"},
-			{"17: ","null"},
-			{"18: ","null"},
-			{"19: ","null"},
-			};
+		ID=id;
+		time=null;
+		course=null;
+		
 	}
-	public void addcourse(int a,String b)//a is the time and b is the course
+	public boolean addcourse(int a,classes b)//a is the time and b is the course
 	{
-		timeboard[a-8][1]=b;
+		if (b.getCO()>=b.getMO())
+		{
+			return false;
+		}
+		course[a-8]=b;
+		return true; //Probably switch this and run a add occupancy method before adding, should ensure that once added, co is not > than mo
 	}
 	public long getID()
 	{
@@ -38,15 +32,15 @@ public class timeslot {
 	public void print()
 	{
 		System.out.println(ID+"'s course:");
-		for(int i=0;i<timeboard.length;i++)
+		for(int i=0;i<time.length;i++)
 		{
-			System.out.println(timeboard[i][0]+timeboard[i][1]);
-			
+			System.out.println(time[i]);
+			course[i].print();
 		}
 	}
 	public void deletecourse(int a)
 	{
-		timeboard[a-8][1]="null";
+		course[a-8]=null;
 	}
 	
 }
