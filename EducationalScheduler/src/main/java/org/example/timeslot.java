@@ -34,8 +34,8 @@ public class timeslot {
 		System.out.println(ID+"'s course:");
 		for(int i=0;i<time.length;i++)
 		{
-			System.out.println(time[i]+course[i]);
-			
+			System.out.println(time[i]);
+			course[i].print();
 		}
 	}
 	public void deletecourse(int a)
