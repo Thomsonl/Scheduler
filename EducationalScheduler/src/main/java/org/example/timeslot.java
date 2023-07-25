@@ -5,9 +5,9 @@ public class timeslot {
 	private long ID;
 	private String[] time= {"8: ","9: ","10: ","11: ","12: ","13: ","14: ","15: ","16: ","17: ","18: ","19: "};
 	private String[] course=null;
-	public timeslot()
+	public timeslot(long id)
 	{
-		ID=0;
+		ID=id;
 		time=null;
 		course=null;
 		
