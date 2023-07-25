@@ -19,7 +19,7 @@ public class timeslot {
 			return false;
 		}
 		course[a-8]=b;
-		return true;
+		return true; //Probably switch this and run a add occupancy method before adding, should ensure that once added, co is not > than mo
 	}
 	public long getID()
 	{
@@ -34,13 +34,13 @@ public class timeslot {
 		System.out.println(ID+"'s course:");
 		for(int i=0;i<time.length;i++)
 		{
-			System.out.println(time[i]+course[i];
+			System.out.println(time[i]+course[i]);
 			
 		}
 	}
 	public void deletecourse(int a)
 	{
-		course[a-8]="null";
+		course[a-8]=null;
 	}
 	
 }
