@@ -74,6 +74,14 @@ public class classes {
 	{
 		return ClassID;
 	}
+	public void print()
+	{
+		System.out.println(ClassName);
+		System.out.println(Professor);
+		System.out.println(ClassID);
+		System.out.println(RoomNum);
+		System.out.println(CurrentOccupancy＋"/"＋MaxOccupancy);
+	}
 
 		
 }
