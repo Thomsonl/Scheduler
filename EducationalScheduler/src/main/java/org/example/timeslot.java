@@ -4,7 +4,7 @@ package org.example;
 public class timeslot {
 	private long ID;
 	private String[] time= {"8: ","9: ","10: ","11: ","12: ","13: ","14: ","15: ","16: ","17: ","18: ","19: "};
-	private String[] course=null;
+	private classes[] course=null;
 	public timeslot(long id)
 	{
 		ID=id;
@@ -18,7 +18,7 @@ public class timeslot {
 		{
 			return false;
 		}
-		course[a-8]=b.getCN();
+		course[a-8]=b;
 		return true;
 	}
 	public long getID()
