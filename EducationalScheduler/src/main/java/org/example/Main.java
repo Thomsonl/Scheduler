@@ -62,7 +62,7 @@ public class Main {
         //Adds info into database
         List<Account> AccountInfo = new ArrayList<>();
         AccountInfo.add(new Account(username, password, email, name, dob));
-        try(Workbook workbook = new XSSFWorkbook()){
+        try(Workbook workbook = new XSSFWorkbook()){//TODO: Change so it does not overwrite the file and instead checks if there is one already
             Sheet sheet = workbook.createSheet("Account Information");//Create a new sheet
             //Write header row
             Row headerRow = sheet.createRow(0);
