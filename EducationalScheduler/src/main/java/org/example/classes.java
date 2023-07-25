@@ -50,7 +50,7 @@ public class classes {
 	{
 		CurrentOccupancy=a;
 	}
-	public String getCN()
+	public  String getCN()
 	{
 		return ClassName;
 	}
@@ -80,8 +80,7 @@ public class classes {
 		System.out.println(Professor);
 		System.out.println(ClassID);
 		System.out.println(RoomNum);
-		System.out.println(CurrentOccupancy＋"/"＋MaxOccupancy);
+		System.out.println(CurrentOccupancy+"/"+MaxOccupancy);
 	}
-
 		
 }
