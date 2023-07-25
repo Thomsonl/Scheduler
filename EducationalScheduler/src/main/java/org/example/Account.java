@@ -1,19 +1,24 @@
 package org.example;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
 public class Account {
     private String Username;
     private String Password;
     private String Email;
     private String Name;
     private String DateOfBirth;
-    private String ID;
+    private long ID;
+    timeslot slot = new timeslot(ID);
     //Default constructor
     public Account(){
         Username = null;
         Password = null;
         Name = null;
         DateOfBirth = null;
-        ID = null;
+        ID = 0;
     }
     //Constructor: initialize all the variables
     public Account(String theUsername, String thePassword, String theEmail, String theName, String theDate){
@@ -22,9 +27,22 @@ public class Account {
         Name = theName;
         DateOfBirth = theDate;
         Email = theEmail;
-        ID = null; //TODO: Create function to make a random int (8 digits)
+        ID = generateID(); //TODO: Create function to make a random int (8 digits)
+        timeslot slot = new timeslot(ID);
     }
+    public long generateID(){
+        int digits = 8;
+        long min = (long)Math.pow(10,digits-1);
+        long max = (long)Math.pow(10,digits)-1;
+        List<Long> previousNumber = new ArrayList<>();
+        Random random = new Random();
+        long number;
+        do {
+            number = random.nextInt((int) (max-min+1))+min;
+        }while(previousNumber.contains(number));//generate different random numbers
 
+        return number;
+    }
     public void setUsername(String theUsername) {
         Username = theUsername;
     }
@@ -55,11 +73,12 @@ public class Account {
     public String getDateOfBirth(){
         return DateOfBirth;
     }
-    public void setID(String theID){
+    public void setID(long theID){
+
         ID = theID;
     }
 
-    public String getID() {
+    public long getID() {
         return ID;
     }
 }

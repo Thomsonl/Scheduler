@@ -62,6 +62,8 @@ public class Main {
         //Adds info into database
         List<Account> AccountInfo = new ArrayList<>();
         AccountInfo.add(new Account(username, password, email, name, dob));
+        List<timeslot> timeslotInfo = new ArrayList<>();
+        List<classes> classesInfo = new ArrayList<>();
         try(Workbook workbook = new XSSFWorkbook()){//TODO: Change so it does not overwrite the file and instead checks if there is one already
             Sheet sheet = workbook.createSheet("Account Information");//Create a new sheet
             //Write header row
@@ -85,6 +87,32 @@ public class Main {
                 row.createCell(4).setCellValue(account.getDateOfBirth());
                 row.createCell(5).setCellValue(account.getID());
             }
+            Sheet sheet_timeslot = workbook.createSheet("Timeslot Information");//Create a new sheet with timeslot info
+            //Write header row
+            Row headerRow_timeSlot = sheet_timeslot.createRow(0);
+            headerRow_timeSlot.createCell(0).setCellValue("Student ID");
+            headerRow_timeSlot.createCell(1).setCellValue("Class Name");
+            headerRow_timeSlot.createCell(2).setCellValue("Class ID");
+            headerRow_timeSlot.createCell(3).setCellValue("Professor");
+            headerRow_timeSlot.createCell(4).setCellValue("Room");
+            headerRow_timeSlot.createCell(5).setCellValue("Max Occupancy");
+            headerRow_timeSlot.createCell(6).setCellValue("Current Occupancy");
+
+            for (int i=0;i<timeslotInfo.size();i++)
+            {
+                timeslot ts = timeslotInfo.get(i);
+                classes c = classesInfo.get(i);
+                Row row = sheet_timeslot.createRow(0);
+                //get info
+                row.createCell(0).setCellValue(ts.getID());
+                row.createCell(2).setCellValue(c.getCN());
+                row.createCell(3).setCellValue(c.getCID());
+                row.createCell(4).setCellValue(c.getPro());
+                row.createCell(5).setCellValue(c.getRN());
+                row.createCell(6).setCellValue(c.getMO());
+                row.createCell(7).setCellValue(c.getCO());
+            }
+
             //Save the workbook to a file
             try (FileOutputStream fileOutputStream = new FileOutputStream(filePath())) {
                 workbook.write(fileOutputStream);
