@@ -3,7 +3,7 @@ package org.example;
 
 public class timeslot {
 	private long ID;
-	private String[] time= {"8: ","9: ","10: ","11: ","12: ","13: ","14: ","15: ","16: ","17: ","18: ","19: "};
+	private String[] time= {"8: ","9: ","10: ","11: ","12: ","13: ","14: ","15: ","16: ","17: ","18: ","19: "};//TODO: Make this for all seven days a week
 	private String[] course=null;
 	public timeslot(long id)
 	{

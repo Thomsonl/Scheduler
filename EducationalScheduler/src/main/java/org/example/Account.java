@@ -31,13 +31,13 @@ public class Account {
         timeslot slot = new timeslot(ID);
     }
     //Constructor for using post LOGIN
-    public Account(String theUsername, String thePassword, String theEmail, String theName, String theDate, String theID){
+    public Account(String theUsername, String thePassword, String theEmail, String theName, String theDate, double theID){
         Username = theUsername;
         Password = thePassword;
         Name = theName;
         DateOfBirth = theDate;
         Email = theEmail;
-        ID = Long.parseLong(theID);
+        ID = (long) theID;
         timeslot slot = new timeslot(ID);
     }
     public long generateID(){
