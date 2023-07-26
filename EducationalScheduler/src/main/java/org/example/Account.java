@@ -27,7 +27,17 @@ public class Account {
         Name = theName;
         DateOfBirth = theDate;
         Email = theEmail;
-        ID = generateID(); //TODO: Create function to make a random int (8 digits)
+        ID = generateID();
+        timeslot slot = new timeslot(ID);
+    }
+    //Constructor for using post LOGIN
+    public Account(String theUsername, String thePassword, String theEmail, String theName, String theDate, String theID){
+        Username = theUsername;
+        Password = thePassword;
+        Name = theName;
+        DateOfBirth = theDate;
+        Email = theEmail;
+        ID = Long.parseLong(theID);
         timeslot slot = new timeslot(ID);
     }
     public long generateID(){
@@ -74,7 +84,6 @@ public class Account {
         return DateOfBirth;
     }
     public void setID(long theID){
-
         ID = theID;
     }
 

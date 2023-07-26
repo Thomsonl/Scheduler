@@ -1,6 +1,7 @@
 package org.example;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -42,7 +43,7 @@ public class Main {
         //Dialogue
         String username, password, email, name, dob;
         slowprint("CREATING ACCOUNT\n");
-        slowprint("Enter a username: ");
+        slowprint("Enter a username: "); //TODO: Will probably have to rearrange everything because we need to check if username has already been inputted before
         username = scanner.nextLine();
         slowprint("Enter a password: ");
         password = scanner.nextLine();
@@ -60,34 +61,43 @@ public class Main {
         slowprint("Alright, you're all set. Let's login to your new account!\n");
 
         //Adds info into database
-        List<Account> AccountInfo = new ArrayList<>();
-        AccountInfo.add(new Account(username, password, email, name, dob));
+        Account account = new Account(username, password, email, name, dob, null);
         List<timeslot> timeslotInfo = new ArrayList<>();
         List<classes> classesInfo = new ArrayList<>();
-        try(Workbook workbook = new XSSFWorkbook()){//TODO: Change so it does not overwrite the file and instead checks if there is one already
-            Sheet sheet = workbook.createSheet("Account Information");//Create a new sheet
+        try(Workbook workbook = new XSSFWorkbook(new FileInputStream(filePath()))){
+            if (workbook.getSheet("Account Information") == null) {
+                workbook.createSheet("Account Information");//Create a new sheet
+                System.out.println("SHIT");
+            }
+            Sheet sheet = workbook.getSheetAt(0);
             //Write header row
-            Row headerRow = sheet.createRow(0);
-            headerRow.createCell(0).setCellValue("Username");
-            headerRow.createCell(1).setCellValue("Password");
-            headerRow.createCell(2).setCellValue("Email");
-            headerRow.createCell(3).setCellValue("Name");
-            headerRow.createCell(4).setCellValue("DateOfBirth");
-            headerRow.createCell(5).setCellValue("ID");
+            Row header = sheet.getRow(0);
+            if (header == null) {
+                Row headerRow = sheet.createRow(0);
+                headerRow.createCell(0).setCellValue("Username");
+                headerRow.createCell(1).setCellValue("Password");
+                headerRow.createCell(2).setCellValue("Email");
+                headerRow.createCell(3).setCellValue("Name");
+                headerRow.createCell(4).setCellValue("DateOfBirth");
+                headerRow.createCell(5).setCellValue("ID");
+            }
 
             //Write account information to the sheet
             int rowIndex = 1;
-            for(Account account:AccountInfo)
-            {
-                Row row = sheet.createRow(rowIndex++);
-                row.createCell(0).setCellValue(account.getUsername());
-                row.createCell(1).setCellValue(account.getPassword());
-                row.createCell(2).setCellValue(account.getEmail());
-                row.createCell(3).setCellValue(account.getName());
-                row.createCell(4).setCellValue(account.getDateOfBirth());
-                row.createCell(5).setCellValue(account.getID());
+            while (sheet.getRow(rowIndex) != null){
+                rowIndex++;
             }
-            Sheet sheet_timeslot = workbook.createSheet("Timeslot Information");//Create a new sheet with timeslot info
+            Row row = sheet.createRow(rowIndex++);
+            row.createCell(0).setCellValue(account.getUsername());
+            row.createCell(1).setCellValue(account.getPassword());
+            row.createCell(2).setCellValue(account.getEmail());
+            row.createCell(3).setCellValue(account.getName());
+            row.createCell(4).setCellValue(account.getDateOfBirth());
+            row.createCell(5).setCellValue(account.getID());
+            if (workbook.getSheet("Timeslot Information") == null) {
+                workbook.createSheet("Timeslot Information");
+            }
+            Sheet sheet_timeslot = workbook.getSheetAt(1);
             //Write header row
             Row headerRow_timeSlot = sheet_timeslot.createRow(0);
             headerRow_timeSlot.createCell(0).setCellValue("Student ID");
@@ -102,7 +112,7 @@ public class Main {
             {
                 timeslot ts = timeslotInfo.get(i);
                 classes c = classesInfo.get(i);
-                Row row = sheet_timeslot.createRow(0);
+                row = sheet_timeslot.createRow(0);
                 //get info
                 row.createCell(0).setCellValue(ts.getID());
                 row.createCell(2).setCellValue(c.getCN());
@@ -123,7 +133,8 @@ public class Main {
         }
     }
 
-    public static void login(){
+    public static Account login(){
+        Account account = null;
         try (Workbook workbook = WorkbookFactory.create(new File(filePath()))) {
             Sheet sheet = workbook.getSheet("Account Information");
 
@@ -141,17 +152,23 @@ public class Main {
                 if (cell != null && cell.getCellType() == CellType.STRING && username.equals(cell.getStringCellValue()) && password.equals(row.getCell(1).getStringCellValue())) {
                     slowprint("Login successful. Welcome, " + row.getCell(3).getStringCellValue() + "!\n");
                     loginB = true;
-                    break;
+                    account = new Account(row.getCell(0).getStringCellValue(), row.getCell(1).getStringCellValue(), row.getCell(2).getStringCellValue(), row.getCell(3).getStringCellValue(), row.getCell(4).getStringCellValue(), Double.toString(row.getCell(5).getNumericCellValue())); //TODO: NEEDS TO BE FIXED, ID number gets weird in excel
+                    return account;
                 }
             }
             if (!loginB) {
                 slowprint("Incorrect username or password. Please try again.\n");
-                login();
+                return login();
             }
         }
         catch (IOException e) {
             e.printStackTrace();
         }
+        return account;
+    }
+
+    public static void timeslots() {
+
     }
 
     public static void main(String[] args) {
@@ -173,7 +190,8 @@ public class Main {
         if (ans == 1) {
             createaccount();
         }
-        login();
+        Account account = login();
+        System.out.println(account.getID());
         scanner.close();
     }
 }
