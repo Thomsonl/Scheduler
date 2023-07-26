@@ -61,13 +61,12 @@ public class Main {
         slowprint("Alright, you're all set. Let's login to your new account!\n");
 
         //Adds info into database
-        Account account = new Account(username, password, email, name, dob, null);
+        Account account = new Account(username, password, email, name, dob);
         List<timeslot> timeslotInfo = new ArrayList<>();
         List<classes> classesInfo = new ArrayList<>();
         try(Workbook workbook = new XSSFWorkbook(new FileInputStream(filePath()))){
             if (workbook.getSheet("Account Information") == null) {
                 workbook.createSheet("Account Information");//Create a new sheet
-                System.out.println("SHIT");
             }
             Sheet sheet = workbook.getSheetAt(0);
             //Write header row
@@ -152,7 +151,7 @@ public class Main {
                 if (cell != null && cell.getCellType() == CellType.STRING && username.equals(cell.getStringCellValue()) && password.equals(row.getCell(1).getStringCellValue())) {
                     slowprint("Login successful. Welcome, " + row.getCell(3).getStringCellValue() + "!\n");
                     loginB = true;
-                    account = new Account(row.getCell(0).getStringCellValue(), row.getCell(1).getStringCellValue(), row.getCell(2).getStringCellValue(), row.getCell(3).getStringCellValue(), row.getCell(4).getStringCellValue(), Double.toString(row.getCell(5).getNumericCellValue())); //TODO: NEEDS TO BE FIXED, ID number gets weird in excel
+                    account = new Account(row.getCell(0).getStringCellValue(), row.getCell(1).getStringCellValue(), row.getCell(2).getStringCellValue(), row.getCell(3).getStringCellValue(), row.getCell(4).getStringCellValue(), row.getCell(5).getNumericCellValue()); //TODO: NEEDS TO BE FIXED, ID number gets weird in excel
                     return account;
                 }
             }
@@ -167,7 +166,7 @@ public class Main {
         return account;
     }
 
-    public static void timeslots() {
+    public static void timeslots(long ID) {
 
     }
 
@@ -191,7 +190,8 @@ public class Main {
             createaccount();
         }
         Account account = login();
-        System.out.println(account.getID());
+        timeslots(account.getID());
+        //TODO: Maybe an account settings option to change email, password and username
         scanner.close();
     }
 }
