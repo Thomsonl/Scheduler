@@ -19,7 +19,7 @@ public class classes {
 		MaxOccupancy=0;
 		CurrentOccupancy=0;
 	}
-	public classes(String ClassNamenew, int timenew,String Professornew, int ClassIDnew, String RoomNumnew, int MaxOccupancynew, int CurrentOccupancynew)
+	public classes(String ClassNamenew, String Professornew, int ClassIDnew, String RoomNumnew, int MaxOccupancynew, int CurrentOccupancynew，int timenew)
 	{
 		time=timenew;
 		ClassName=ClassNamenew;
