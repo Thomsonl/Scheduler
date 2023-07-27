@@ -4,8 +4,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
@@ -90,8 +88,7 @@ public class Main {
 
             slowprint("Alright, you're all set. Let's login to your new account!\n");
             Account account = new Account(username, password, email, name, dob);
-            List<timeslot> timeslotInfo = new ArrayList<>();
-            List<classes> classesInfo = new ArrayList<>();
+            timeslot timeslotInfo = new timeslot();
             //Write account information to the sheet
             int rowIndex = 1;
             while (sheet.getRow(rowIndex) != null){
@@ -111,28 +108,17 @@ public class Main {
             Sheet sheet_timeslot = workbook.getSheetAt(1);
             //Write header row
             Row headerRow_timeSlot = sheet_timeslot.createRow(0);
-            headerRow_timeSlot.createCell(0).setCellValue("Student ID");
-            headerRow_timeSlot.createCell(1).setCellValue("Class Name");
-            headerRow_timeSlot.createCell(2).setCellValue("Class ID");
-            headerRow_timeSlot.createCell(3).setCellValue("Professor");
-            headerRow_timeSlot.createCell(4).setCellValue("Room");
-            headerRow_timeSlot.createCell(5).setCellValue("Max Occupancy");
-            headerRow_timeSlot.createCell(6).setCellValue("Current Occupancy");
+            headerRow_timeSlot.createCell(0).setCellValue("ID");
+            headerRow_timeSlot.createCell(1).setCellValue("Class ID"); //TODO: I am thinking of saving all the class IDs in a list and sperating them by commas when stored in excel, should be able to parse when being read back
 
-            for (int i=0;i<timeslotInfo.size();i++)
-            {
-                timeslot ts = timeslotInfo.get(i);
-                classes c = classesInfo.get(i);
-                row = sheet_timeslot.createRow(0);
-                //get info
-                row.createCell(0).setCellValue(ts.getID());
-                row.createCell(2).setCellValue(c.getCN());
-                row.createCell(3).setCellValue(c.getCID());
-                row.createCell(4).setCellValue(c.getPro());
-                row.createCell(5).setCellValue(c.getRN());
-                row.createCell(6).setCellValue(c.getMO());
-                row.createCell(7).setCellValue(c.getCO());
+            //Write timeslot information to the sheet
+            rowIndex = 1;
+            while (sheet_timeslot.getRow(rowIndex) != null){
+                rowIndex++;
             }
+            row = sheet_timeslot.createRow(rowIndex++);
+            row.createCell(0).setCellValue(timeslotInfo.getID());
+            row.createCell(1).setCellValue(timeslotInfo.getlist());
 
             //Save the workbook to a file
             try (FileOutputStream fileOutputStream = new FileOutputStream(filePath())) {
@@ -178,8 +164,23 @@ public class Main {
         return account;
     }
 
-    public static void timeslots(long ID) {
-
+    public static timeslot timeslots(long ID) {
+        timeslot timeslot = null;
+        try (Workbook workbook = WorkbookFactory.create(new File(filePath()))) {
+            Sheet sheet = workbook.getSheet("Timeslot Information");
+            for (Row row : sheet) {
+                Cell cell = row.getCell(0);
+                if (cell != null && cell.getCellType() == CellType.NUMERIC && ID == (long) cell.getNumericCellValue()) {
+                    slowprint("LOADING CLASSES\n");
+                    //TODO: Timeslot needs a better constructor and ability to import all data from excel
+                    //timeslot = new timeslot(row.getCell(0).getNumericCellValue());
+                }
+            }
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+        return timeslot;
     }
 
     public static void main(String[] args) {
@@ -202,7 +203,7 @@ public class Main {
             createaccount();
         }
         Account account = login();
-        timeslots(account.getID());
+        timeslot timeslot = timeslots(account.getID());
         //TODO: Maybe an account settings option to change email, password and username
         scanner.close();
     }
