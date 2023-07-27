@@ -7,12 +7,14 @@ public class classes {
 	private String RoomNum;
 	private int MaxOccupancy;
 	private int CurrentOccupancy;
+	private int time;
 	
 	public classes()
 	{
 		ClassName=null;
 		Professor=null;
 		ClassID=0;
+		time=0;
 		RoomNum=null;
 		MaxOccupancy=0;
 		CurrentOccupancy=0;
@@ -25,6 +27,17 @@ public class classes {
 		RoomNum=RoomNumnew;
 		MaxOccupancy=MaxOccupancynew;
 		CurrentOccupancy=CurrentOccupancynew;
+	}
+	public void settime(int a)
+	{
+		if(a<20&&a>7)
+			time=a;
+		else
+			System.out.println("invalid time");
+	}
+	public int gettime()
+	{
+		return time;
 	}
 	public void setCN(String a)
 	{
@@ -76,6 +89,7 @@ public class classes {
 	}
 	public void print()
 	{
+		System.out.println(time+":00");
 		System.out.println(ClassName);
 		System.out.println(Professor);
 		System.out.println(ClassID);
