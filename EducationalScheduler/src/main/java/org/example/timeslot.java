@@ -22,21 +22,21 @@ public class timeslot {
 			{
 			case "Monday":
 				//if((course[1][b.gettime()-8]).equals("NULL\t"))
-				course[1][b.gettime()-8]=(b.getCN()).concat("\t");
+				course[1][b.gettime()-7]=(b.getCN()).concat("\t");
 				//else
 					//System.out.println("time conflict");
 			case "Tuesday":
-				course[2][b.gettime()-8]=(b.getCN()).concat("\t");
+				course[2][b.gettime()-7]=(b.getCN()).concat("\t");
 			case "Wednesday":
-				course[3][b.gettime()-8]=(b.getCN()).concat("\t");
+				course[3][b.gettime()-7]=(b.getCN()).concat("\t");
 			case "Thurseday":
-				course[4][b.gettime()-8]=(b.getCN()).concat("\t");
+				course[4][b.gettime()-7]=(b.getCN()).concat("\t");
 			case "Friday":
-				course[5][b.gettime()-8]=(b.getCN()).concat("\t");
+				course[5][b.gettime()-7]=(b.getCN()).concat("\t");
 			case "Saturday":
-				course[6][b.gettime()-8]=(b.getCN()).concat("\t");
+				course[6][b.gettime()-7]=(b.getCN()).concat("\t");
 			case "Sunday":
-				course[7][b.gettime()-8]=(b.getCN()).concat("\t");
+				course[7][b.gettime()-7]=(b.getCN()).concat("\t");
 			}
 			return true;
 		}
