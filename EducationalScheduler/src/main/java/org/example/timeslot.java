@@ -12,6 +12,9 @@ public class timeslot {
 		course=null;
 		
 	}
+	public timeslot()
+	{
+	}
 	public boolean addcourse(int a,classes b)//a is the time and b is the course
 	{
 		if (b.getCO()>=b.getMO())
@@ -28,6 +31,11 @@ public class timeslot {
 	public void setID(long id) 
 	{
 		ID=id;
+	}
+	public String getlist()
+	{
+		String list = ""; //TODO: This needs to output string of all courses assigned to this person
+		return list;
 	}
 	public void print()
 	{
