@@ -40,30 +40,6 @@ public class Main {
     }
 
     public static void createaccount(){ //TODO: Needs to create a itemblock object and database row as well.
-        //Dialogue
-        String username, password, email, name, dob;
-        slowprint("CREATING ACCOUNT\n");
-        slowprint("Enter a username: "); //TODO: Will probably have to rearrange everything because we need to check if username has already been inputted before
-        username = scanner.nextLine();
-        slowprint("Enter a password: ");
-        password = scanner.nextLine();
-        slowprint("Enter your email: ");
-        email = scanner.nextLine();
-        System.out.println();
-
-        slowprint("Now that we got that settled, lets get to know you a bit more.\n");
-        slowprint("Enter your name: ");
-        name = scanner.nextLine();
-        slowprint("Enter your date of birth: ");
-        dob = scanner.nextLine();
-        System.out.println();
-
-        slowprint("Alright, you're all set. Let's login to your new account!\n");
-
-        //Adds info into database
-        Account account = new Account(username, password, email, name, dob);
-        List<timeslot> timeslotInfo = new ArrayList<>();
-        List<classes> classesInfo = new ArrayList<>();
         try(Workbook workbook = new XSSFWorkbook(new FileInputStream(filePath()))){
             if (workbook.getSheet("Account Information") == null) {
                 workbook.createSheet("Account Information");//Create a new sheet
@@ -80,7 +56,42 @@ public class Main {
                 headerRow.createCell(4).setCellValue("DateOfBirth");
                 headerRow.createCell(5).setCellValue("ID");
             }
+            //Dialogue
+            String username, password, email, name, dob;
+            slowprint("CREATING ACCOUNT\n");
+            boolean unique = true;
+            do {
+                slowprint("Enter a username: "); //TODO: Will probably have to rearrange everything because we need to check if username has already been inputted before
+                username = scanner.nextLine();
+                for (Row row : sheet) {
+                    Cell cell = row.getCell(0);
+                    if (cell != null && cell.getCellType() == CellType.STRING && username.equals(cell.getStringCellValue())) {
+                        slowprint("Username already exists. Please try again.\n\n");
+                        unique = false;
+                        break;
+                    }
+                    else {
+                        unique = true;
+                    }
+                }
+            } while (!unique);
+            slowprint("Enter a password: ");
+            password = scanner.nextLine();
+            slowprint("Enter your email: ");
+            email = scanner.nextLine();
+            System.out.println();
 
+            slowprint("Now that we got that settled, lets get to know you a bit more.\n");
+            slowprint("Enter your name: ");
+            name = scanner.nextLine();
+            slowprint("Enter your date of birth: ");
+            dob = scanner.nextLine();
+            System.out.println();
+
+            slowprint("Alright, you're all set. Let's login to your new account!\n");
+            Account account = new Account(username, password, email, name, dob);
+            List<timeslot> timeslotInfo = new ArrayList<>();
+            List<classes> classesInfo = new ArrayList<>();
             //Write account information to the sheet
             int rowIndex = 1;
             while (sheet.getRow(rowIndex) != null){
