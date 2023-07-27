@@ -93,6 +93,7 @@ public class Main {
             row.createCell(3).setCellValue(account.getName());
             row.createCell(4).setCellValue(account.getDateOfBirth());
             row.createCell(5).setCellValue(account.getID());
+            
             if (workbook.getSheet("Timeslot Information") == null) {
                 workbook.createSheet("Timeslot Information");
             }

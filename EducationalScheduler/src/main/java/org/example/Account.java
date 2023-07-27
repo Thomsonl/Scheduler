@@ -28,7 +28,7 @@ public class Account {
         DateOfBirth = theDate;
         Email = theEmail;
         ID = generateID();
-        timeslot slot = new timeslot(ID);
+        //timeslot slot = new timeslot(ID);
     }
     //Constructor for using post LOGIN
     public Account(String theUsername, String thePassword, String theEmail, String theName, String theDate, double theID){
@@ -38,7 +38,7 @@ public class Account {
         DateOfBirth = theDate;
         Email = theEmail;
         ID = (long) theID;
-        timeslot slot = new timeslot(ID);
+        //timeslot slot = new timeslot(ID);
     }
     public long generateID(){
         int digits = 8;
