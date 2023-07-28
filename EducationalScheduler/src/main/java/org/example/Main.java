@@ -59,7 +59,7 @@ public class Main {
             slowprint("CREATING ACCOUNT\n");
             boolean unique = true;
             do {
-                slowprint("Enter a username: "); //TODO: Will probably have to rearrange everything because we need to check if username has already been inputted before
+                slowprint("Enter a username: "); 
                 username = scanner.nextLine();
                 for (Row row : sheet) {
                     Cell cell = row.getCell(0);
@@ -183,6 +183,10 @@ public class Main {
         return timeslot;
     }
 
+    public static void classes() {
+        //print all classes
+    }
+
     public static void main(String[] args) {
         System.out.println();
 
@@ -204,6 +208,21 @@ public class Main {
         }
         Account account = login();
         timeslot timeslot = timeslots(account.getID());
+        //timeslot.print();
+        //WHILE LOOP
+        //Add or drop classes?
+        //Add
+            //What day?
+            //Display all classes
+            //Enter what class you want - string
+            //timeslot.addcourse(day, class)
+            //timeslot.print();
+        //Drop
+            //What day?
+            //Display classes for that day already enrolled in
+            //Which class to drop? - string
+            //timeslot.dropcourse(day, class)
+        
         //TODO: Maybe an account settings option to change email, password and username
         scanner.close();
     }

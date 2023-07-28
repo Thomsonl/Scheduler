@@ -3,6 +3,13 @@ package org.example;
 
 public class timeslot {
 	private long ID;
+	String[] monday_array = new String[10];
+	String[] tuesday_array;
+	String[] wednesday_array;
+	String[] thursday_array;
+	String[] friday_array;
+	String[] saturday_array;
+	String[] sunday_array;
 	private String[][] course= 
 		{
 				{"\t","8:00-9:00\t","9:00-10:00\t","10:00-11:00\t","11:00-12:00\t","12:00-13:00\t","13:00-14:00\t","14:00-15:00\t","15:00-16:00\t","16:00-17:00\t","17:00-18:00\t","18:00-19:00\t"},
@@ -14,6 +21,33 @@ public class timeslot {
 				{"Saturday|\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t",},
 				{"Sunday|\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t"}
 		};
+
+	//On account creation
+	public timeslot(long id) {
+		ID=id;
+		monday_array = {null, null, null, null, null, null, null, null, null, null};
+		tuesday_array = {null, null, null, null, null, null, null, null, null, null};
+		wednesday_array = {null, null, null, null, null, null, null, null, null, null};
+		thursday_array = {null, null, null, null, null, null, null, null, null, null};
+		friday_array = {null, null, null, null, null, null, null, null, null, null};
+		saturday_array = {null, null, null, null, null, null, null, null, null, null};
+		sunday_array = {null, null, null, null, null, null, null, null, null, null};
+	}
+
+	//Loading timeslot information
+	public timeslot(long id, String monday, String tuesday, String wednesday, String thursday, String friday, String saturday, String sunday) {
+		ID=id;
+		monday_array = monday.split(",");
+		tuesday_array = tuesday.split(",");
+		wednesday_array = wednesday.split(",");
+		thursday_array = thursday.split(",");
+		friday_array = friday.split(",");
+		saturday_array = saturday.split(",");
+		sunday_array = sunday.split(",");
+
+
+	}
+
 	public boolean addcourse(String a, classes b)
 	{
 		if(b.getCO()<b.getMO())
@@ -43,11 +77,6 @@ public class timeslot {
 		else
 			return false;
 	}
-	public timeslot(long id)
-	{
-		ID=id;
-		course=null;
-	}
 	
 	public long getID()
 	{
@@ -61,7 +90,7 @@ public class timeslot {
 	{
 		case "Monday":
 			for(int i=1;i<12;i++)
-			{
+		{
 				if(course[1][i].equals(b)
 				   course[1][i]="NULL\t";
 			}
@@ -100,7 +129,7 @@ public class timeslot {
 			{
 				if(course[7][i].equals(b)
 				   course[7][i]="NULL\t";
-			}
+		}
 	}
 	public void printcourse()
 	{
