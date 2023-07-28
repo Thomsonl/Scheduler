@@ -79,7 +79,7 @@ public class timeslot {
 			for(int i=0;i<12;i++)
 			{
 				if(monday[i].equals(b))
-					monday[i]=null;
+					monday[i]="NULL\t";
 			}
 		case "Tuesday":
 				for(int i=0;i<12;i++)
