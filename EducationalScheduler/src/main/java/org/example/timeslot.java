@@ -1,49 +1,34 @@
 package org.example;
 
+import java.util.Arrays;
 
 public class timeslot {
 	private long ID;
-	String[] monday_array = new String[10];
-	String[] tuesday_array;
-	String[] wednesday_array;
-	String[] thursday_array;
-	String[] friday_array;
-	String[] saturday_array;
-	String[] sunday_array;
-	private String[][] course= 
-		{
-				{"\t","8:00-9:00\t","9:00-10:00\t","10:00-11:00\t","11:00-12:00\t","12:00-13:00\t","13:00-14:00\t","14:00-15:00\t","15:00-16:00\t","16:00-17:00\t","17:00-18:00\t","18:00-19:00\t"},
-				{"Monday|\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t"},
-				{"Tuesday|\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t"},
-				{"Wednesday|\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t"},
-				{"Thurseday|\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t"},
-				{"Friday|\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t",},
-				{"Saturday|\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t",},
-				{"Sunday|\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t"}
-		};
+	String[]period= {"8:00-9:00\t","9:00-10:00\t","10:00-11:00\t","11:00-12:00\t","12:00-13:00\t","13:00-14:00\t","14:00-15:00\t","15:00-16:00\t","16:00-17:00\t","17:00-18:00\t","18:00-19:00\t","19:00-20:00\t",};
+	String[] monday =  {"NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t"};
+	String[] tuesday= {"NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t"};;
+	String[] wednesday= {"NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t"};;
+	String[] thursday= {"NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t"};;
+	String[] friday= {"NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t"};;
+	String[] saturday= {"NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t"};;
+	String[] sunday= {"NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t"};;
+	
 
 	//On account creation
 	public timeslot(long id) {
 		ID=id;
-		monday_array = {null, null, null, null, null, null, null, null, null, null};
-		tuesday_array = {null, null, null, null, null, null, null, null, null, null};
-		wednesday_array = {null, null, null, null, null, null, null, null, null, null};
-		thursday_array = {null, null, null, null, null, null, null, null, null, null};
-		friday_array = {null, null, null, null, null, null, null, null, null, null};
-		saturday_array = {null, null, null, null, null, null, null, null, null, null};
-		sunday_array = {null, null, null, null, null, null, null, null, null, null};
 	}
 
 	//Loading timeslot information
 	public timeslot(long id, String monday, String tuesday, String wednesday, String thursday, String friday, String saturday, String sunday) {
 		ID=id;
-		monday_array = monday.split(",");
-		tuesday_array = tuesday.split(",");
-		wednesday_array = wednesday.split(",");
-		thursday_array = thursday.split(",");
-		friday_array = friday.split(",");
-		saturday_array = saturday.split(",");
-		sunday_array = sunday.split(",");
+		this.monday = monday.split(",");
+		this.tuesday= tuesday.split(",");
+		this.wednesday = wednesday.split(",");
+		this.thursday = thursday.split(",");
+		this.friday= friday.split(",");
+		this.saturday = saturday.split(",");
+		this.sunday = sunday.split(",");
 
 
 	}
@@ -56,21 +41,21 @@ public class timeslot {
 			{
 			case "Monday":
 				//if((course[1][b.gettime()-8]).equals("NULL\t"))
-				course[1][b.gettime()-7]=(b.getCN()).concat("\t");
+				monday[b.gettime()-8]=(b.getCN()).concat("\t");
 				//else
 					//System.out.println("time conflict");
 			case "Tuesday":
-				course[2][b.gettime()-7]=(b.getCN()).concat("\t");
+				tuesday[b.gettime()-8]=(b.getCN()).concat("\t");
 			case "Wednesday":
-				course[3][b.gettime()-7]=(b.getCN()).concat("\t");
+				wednesday[b.gettime()-8]=(b.getCN()).concat("\t");
 			case "Thursday":
-				course[4][b.gettime()-7]=(b.getCN()).concat("\t");
+				thursday[b.gettime()-8]=(b.getCN()).concat("\t");
 			case "Friday":
-				course[5][b.gettime()-7]=(b.getCN()).concat("\t");
+				friday[b.gettime()-8]=(b.getCN()).concat("\t");
 			case "Saturday":
-				course[6][b.gettime()-7]=(b.getCN()).concat("\t");
+				saturday[b.gettime()-8]=(b.getCN()).concat("\t");
 			case "Sunday":
-				course[7][b.gettime()-7]=(b.getCN()).concat("\t");
+				sunday[b.gettime()-8]=(b.getCN()).concat("\t");
 			}
 			return true;
 		}
@@ -91,85 +76,134 @@ public class timeslot {
 		switch(a)
 		{
 		case "Monday":
-			for(int i=1;i<12;i++)
+			for(int i=0;i<12;i++)
 			{
-				if(course[1][i].equals(b))
-					{
-					course[1][i]="NULL\t";
-					}
+				if(monday[i].equals(b))
+					monday[i]=null;
 			}
 		case "Tuesday":
-				for(int i=1;i<12;i++)
+				for(int i=0;i<12;i++)
 			{
-				if(course[2][i].equals(b))
-				   course[2][i]="NULL\t";
+				if(tuesday[i].equals(b))
+				   tuesday[i]="NULL\t";
 			}
 		case "Wednesday":
-				for(int i=1;i<12;i++)
+				for(int i=0;i<12;i++)
 			{
-				if(course[3][i].equals(b))
+				if(wednesday[i].equals(b))
 						
-				   course[3][i]="NULL\t";
+				   wednesday[i]="NULL\t";
 			}
 		case "Thursday":
-				for(int i=1;i<12;i++)
+				for(int i=0;i<12;i++)
 			{
-				if(course[4][i].equals(b))
-				   course[4][i]="NULL\t";
+				if(thursday[i].equals(b))
+				   thursday[i]="NULL\t";
 			}
 		case "Friday":
-				for(int i=1;i<12;i++)
+				for(int i=0;i<12;i++)
 			{
-				if(course[5][i].equals(b))
-				   course[5][i]="NULL\t";
+				if(friday[i].equals(b))
+				   friday[i]="NULL\t";
 			}
 		case "Saturday":
-				for(int i=1;i<12;i++)
+				for(int i=0;i<12;i++)
 			{
-				if(course[6][i].equals(b))
-				   course[6][i]="NULL\t";
+				if(saturday.equals(b))
+				   saturday[i]="NULL\t";
 			}
 		case "Sunday":
-				for(int i=1;i<12;i++)
+				for(int i=0;i<12;i++)
 			{
-				if(course[7][i].equals(b))
-				   course[7][i]="NULL\t";
+				if(sunday[i].equals(b))
+				   sunday[i]="NULL\t";
 		}		
 		}
 	}
 	public void printcourse()
 	{
 		System.out.println(ID+"'s course:");
-		for(int i=0;i<8;i++)
+		System.out.print("\t");
+		for(int i=0;i<12;i++)
 		{
-			for(int j=0;j<12;j++)
-			{
-				System.out.print(course[i][j]);
-				if(j==11)
-					System.out.println();
-			}
-			
+			System.out.print(period[i]);
+			if(i==11)
+				System.out.println();
 		}
-	}
-	public String[] getlist()
-	{
-		String[] a=null;
-		int k=0;
-		for(int i=1;i<8;i++)
+		for(int i=0;i<12;i++)
 		{
-			for(int j=1;j<12;j++)
-			{
-				if(!((course[i][j]).equals("NULL\t")))
-				{
-					a[k]=course[i][j];
-					k++;
-				}
-			}
-			
+			System.out.print(monday[i]);
+			if(i==11)
+				System.out.println();
 		}
+		for(int i=0;i<12;i++)
+		{
+			System.out.print(tuesday[i]);
+			if(i==11)
+				System.out.println();
+		}
+		for(int i=0;i<12;i++)
+		{
+			System.out.print(wednesday[i]);
+			if(i==11)
+				System.out.println();
+		}
+		for(int i=0;i<12;i++)
+		{
+			System.out.print(thursday[i]);
+			if(i==11)
+				System.out.println();
+		}
+		for(int i=0;i<12;i++)
+		{
+			System.out.print(friday[i]);
+			if(i==11)
+				System.out.println();
+		}
+		for(int i=0;i<12;i++)
+		{
+			System.out.print(saturday[i]);
+			if(i==11)
+				System.out.println();
+		}
+		for(int i=0;i<12;i++)
+		{
+			System.out.print(sunday[i]);
+			if(i==11)
+				System.out.println();
+		}
+			
 		
-		return a;
 	}
+	public String getmonday()
+	{
+		return Arrays.toString(monday);
+	}
+	public String gettuesdayday()
+	{
+		return Arrays.toString(tuesday);
+	}
+	public String getwednesdayday()
+	{
+		return Arrays.toString(wednesday);
+	}
+	public String getthursday()
+	{
+		return Arrays.toString(thursday);
+	}
+	public String getfriday()
+	{
+		return Arrays.toString(friday);
+	}
+	public String getsaturdday()
+	{
+		return Arrays.toString(saturday);
+	}
+	public String getsunday()
+	{
+		return Arrays.toString(sunday);
+	}
+	
 	//Acessor methods for all arrays that return string version of array(example: [1,2,3,4] -> "1,2,3,4")
 	
 }
