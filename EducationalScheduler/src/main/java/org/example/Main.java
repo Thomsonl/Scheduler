@@ -202,7 +202,34 @@ public class Main {
             e.printStackTrace();
         }
     }
-
+    private static void updateTimeSlot(List<Account> AccountInfo,String filePath)
+    {
+        try{
+            Workbook workbook = new XSSFWorkbook();
+            Sheet sheet_timeslot = workbook.getSheetAt(1);
+            //uodate info to timeslot
+            for(int i=0;i<AccountInfo.size();i++)
+            {
+                Account account = AccountInfo.get(i);
+                Row row = sheet_timeslot.createRow(i+1);
+                row.createCell(0).setCellValue(account.getID());
+                row.createCell(1).setCellValue(account.slot.getmonday());
+                row.createCell(2).setCellValue(account.slot.gettuesdayday());
+                row.createCell(3).setCellValue(account.slot.getwednesdayday());
+                row.createCell(4).setCellValue(account.slot.getthursday());
+                row.createCell(5).setCellValue(account.slot.getfriday());
+                row.createCell(6).setCellValue(account.slot.getsaturdday());
+                row.createCell(7).setCellValue(account.slot.getsunday());
+            }
+            //Save the workbook to a file
+            try(FileOutputStream fileOutputStream = new FileOutputStream(filePath)){
+                workbook.write(fileOutputStream);
+            }
+        }
+        catch (IOException e){
+            e.printStackTrace();
+        }
+    }
     public static Account login(){
         Account account = null;
         try (Workbook workbook = WorkbookFactory.create(new File(filePath()))) {
