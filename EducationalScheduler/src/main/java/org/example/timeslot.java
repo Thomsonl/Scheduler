@@ -167,5 +167,6 @@ public class timeslot {
 		
 		return a;
 	}
+	//Acessor methods for all arrays that return string version of array(example: [1,2,3,4] -> "1,2,3,4")
 	
 }
