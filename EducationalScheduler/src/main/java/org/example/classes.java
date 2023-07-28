@@ -29,9 +29,9 @@ public class classes {
 		MaxOccupancy=MaxOccupancynew;
 		CurrentOccupancy=CurrentOccupancynew;
 	}
-	/*public void settime(int a)
+	/*public void settime(String a)
 	{
-		if(a<20&&a>7)
+		if(Integer.valueOf(a)<20&&Integer.valueOf(a)>7)
 			time=a;
 		else
 			System.out.println("invalid time");
