@@ -29,7 +29,7 @@ public class timeslot {
 				course[2][b.gettime()-7]=(b.getCN()).concat("\t");
 			case "Wednesday":
 				course[3][b.gettime()-7]=(b.getCN()).concat("\t");
-			case "Thurseday":
+			case "Thursday":
 				course[4][b.gettime()-7]=(b.getCN()).concat("\t");
 			case "Friday":
 				course[5][b.gettime()-7]=(b.getCN()).concat("\t");
@@ -57,16 +57,50 @@ public class timeslot {
 	{
 		ID=id;
 	}
-	public void deletecourse(String a)
+	public void deletecourse(String a，string b)
 	{
-		for(int i=1;i<8;i++)
-		{
-			for(int j=1;j<12;j++)
+		case "Monday":
+			for(int i=1;i<12;i++)
 			{
-				if(course[i][j].equals(a))
-					course[i][j]="NULL\t";
+				if(course[1][i].equals(b)
+				   course[1][i]="NULL\t";
 			}
-		}
+		case "Tuesday":
+				for(int i=1;i<12;i++)
+			{
+				if(course[2][i].equals(b)
+				   course[2][i]="NULL\t";
+			}
+		case "Wednesday":
+				for(int i=1;i<12;i++)
+			{
+				if(course[3][i].equals(b)
+				   course[3][i]="NULL\t";
+			}
+		case "Thursday":
+				for(int i=1;i<12;i++)
+			{
+				if(course[4][i].equals(b)
+				   course[4][i]="NULL\t";
+			}
+		case "Friday":
+				for(int i=1;i<12;i++)
+			{
+				if(course[5][i].equals(b)
+				   course[5][i]="NULL\t";
+			}
+		case "Saturday":
+				for(int i=1;i<12;i++)
+			{
+				if(course[6][i].equals(b)
+				   course[6][i]="NULL\t";
+			}
+		case "Sunday":
+				for(int i=1;i<12;i++)
+			{
+				if(course[7][i].equals(b)
+				   course[7][i]="NULL\t";
+			}
 	}
 	public void printcourse()
 	{
