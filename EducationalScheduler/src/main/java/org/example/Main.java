@@ -168,7 +168,21 @@ public class Main {
             //Write header row
             Row headerRow_timeSlot = sheet_timeslot.createRow(0);
             headerRow_timeSlot.createCell(0).setCellValue("ID");
-            headerRow_timeSlot.createCell(1).setCellValue("Class ID"); //TODO: I am thinking of saving all the class IDs in a list and sperating them by commas when stored in excel, should be able to parse when being read back
+            headerRow_timeSlot.createCell(1).setCellValue("Monday"); //TODO: I am thinking of saving all the class IDs in a list and sperating them by commas when stored in excel, should be able to parse when being read back
+            headerRow_timeSlot.createCell(2).setCellValue("Tuesday");
+            headerRow_timeSlot.createCell(3).setCellValue("Wednesday");
+            headerRow_timeSlot.createCell(4).setCellValue("Thursday");
+            headerRow_timeSlot.createCell(5).setCellValue("Friday");
+            headerRow_timeSlot.createCell(6).setCellValue("Saturday");
+            headerRow_timeSlot.createCell(7).setCellValue("Sunday");
+
+            //Write timeslot information to the sheet
+            rowIndex = 1;
+            while (sheet_timeslot.getRow(rowIndex) != null){
+                rowIndex++;
+            }
+            headerRow_timeSlot.createCell(1).setCellValue("Class ID");           
+
 
             //Write timeslot information to the sheet
             rowIndex = 1;
@@ -275,6 +289,7 @@ public class Main {
             //Display all classes
             //Enter what class you want - string
             //timeslot.addcourse(day, class)
+            //Update excel
             //timeslot.print();
         //Drop
             //What day?
