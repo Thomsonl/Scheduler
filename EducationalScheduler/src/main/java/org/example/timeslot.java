@@ -130,42 +130,49 @@ public class timeslot {
 			if(i==11)
 				System.out.println();
 		}
+		System.out.print("Monday:\t");
 		for(int i=0;i<12;i++)
 		{
 			System.out.print(monday[i]);
 			if(i==11)
 				System.out.println();
 		}
+		System.out.print("Tuesday:\t");
 		for(int i=0;i<12;i++)
 		{
 			System.out.print(tuesday[i]);
 			if(i==11)
 				System.out.println();
 		}
+		System.out.print("Wednesday:\t");
 		for(int i=0;i<12;i++)
 		{
 			System.out.print(wednesday[i]);
 			if(i==11)
 				System.out.println();
 		}
+		System.out.print("Thursday:\t");
 		for(int i=0;i<12;i++)
 		{
 			System.out.print(thursday[i]);
 			if(i==11)
 				System.out.println();
 		}
+		System.out.print("Friday:\t");
 		for(int i=0;i<12;i++)
 		{
 			System.out.print(friday[i]);
 			if(i==11)
 				System.out.println();
 		}
+		System.out.print("Saturday:\t");
 		for(int i=0;i<12;i++)
 		{
 			System.out.print(saturday[i]);
 			if(i==11)
 				System.out.println();
 		}
+		System.out.print("Sunday:\t");
 		for(int i=0;i<12;i++)
 		{
 			System.out.print(sunday[i]);
