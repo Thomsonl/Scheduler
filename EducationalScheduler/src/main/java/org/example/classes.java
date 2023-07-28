@@ -7,20 +7,20 @@ public class classes {
 	private String RoomNum;
 	private int MaxOccupancy;
 	private int CurrentOccupancy;
-	private int time;
+	private String time;
 	
 	public classes()
 	{
 		ClassName=null;
 		Professor=null;
 		ClassID=0;
-		time=0;
+		time=null;
 		RoomNum=null;
 		MaxOccupancy=0;
 		CurrentOccupancy=0;
 	}
-	public classes(String ClassNamenew, String Professornew, int ClassIDnew, String RoomNumnew, int MaxOccupancynew, int CurrentOccupancynew，int timenew)
-	{
+	public classes(String ClassNamenew,String timenew, String Professornew, int ClassIDnew, String RoomNumnew, int MaxOccupancynew, int CurrentOccupancynew)
+    {
 		time=timenew;
 		ClassName=ClassNamenew;
 		Professor=Professornew;
@@ -29,14 +29,14 @@ public class classes {
 		MaxOccupancy=MaxOccupancynew;
 		CurrentOccupancy=CurrentOccupancynew;
 	}
-	public void settime(int a)
+	/*public void settime(int a)
 	{
 		if(a<20&&a>7)
 			time=a;
 		else
 			System.out.println("invalid time");
-	}
-	public int gettime()
+	}*/
+	public String gettime()
 	{
 		return time;
 	}
