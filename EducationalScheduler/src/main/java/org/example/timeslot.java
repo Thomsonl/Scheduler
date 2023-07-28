@@ -88,6 +88,8 @@ public class timeslot {
 	}
 	public void deletecourse(String a，string b)
 	{
+		switch(a)
+		{
 		case "Monday":
 			for(int i=1;i<12;i++)
 		{
@@ -129,6 +131,7 @@ public class timeslot {
 			{
 				if(course[7][i].equals(b)
 				   course[7][i]="NULL\t";
+		}		
 		}
 	}
 	public void printcourse()
