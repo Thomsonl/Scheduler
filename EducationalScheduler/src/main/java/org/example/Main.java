@@ -36,7 +36,64 @@ public class Main {
         String filePath = System.getProperty("user.dir") + File.separator + relativePath;
         return filePath;
     }
+    public static List<classes> readClassesFromSheet(String filePath,String sheetName) {
+        File file = new File(filePath);
+        if(!file.exists()){
+            try{
+                Workbook workbook = new XSSFWorkbook();
+                Sheet sheet = workbook.createSheet(sheetName);//Create a new sheet
+                //Write header row
+                Row headerRow = sheet.createRow(0);
+                headerRow.createCell(0).setCellValue("Class Name");
+                headerRow.createCell(1).setCellValue("Time Spend");
+                headerRow.createCell(2).setCellValue("Class ID");
+                headerRow.createCell(3).setCellValue("Professor");
+                headerRow.createCell(4).setCellValue("Room");
+                headerRow.createCell(5).setCellValue("Max Occupancy");
+                headerRow.createCell(6).setCellValue("Current Occupancy");
+                //Save the workbook to a file
+                try(FileOutputStream fileOutputStream = new FileOutputStream(filePath)){
+                    workbook.write(fileOutputStream);
+                }
+            }
+            catch (IOException e){
+                e.printStackTrace();
+            }
+        }
+        List<classes> classesInfo = new ArrayList<>();
+        try {
+            FileInputStream fileInputStream = new FileInputStream(filePath);
+            Workbook workbook = new XSSFWorkbook(fileInputStream);
 
+            // data is in the sheet starts from index0
+            Sheet sheet = workbook.getSheetAt(0);
+
+            for (int i = 1; i <= sheet.getLastRowNum(); i++) {
+                Row row = sheet.getRow(i);
+
+                String className = row.getCell(0).getStringCellValue();
+                String timeSpend = row.getCell(1).getStringCellValue();
+                int classID = (int) row.getCell(2).getNumericCellValue();
+                String professor = row.getCell(3).getStringCellValue();
+                String room = row.getCell(4).getStringCellValue();
+                int maxOccupancy = (int) row.getCell(5).getNumericCellValue();
+                //int currentOccupancy = (int) row.getCell(6).getNumericCellValue();
+
+                classes newclasses = new classes(className,timeSpend,professor,classID,room,maxOccupancy,0);
+                classesInfo.add(newclasses);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return classesInfo;
+    }
+    public static void printClassesInfo(List<classes> classInfo){
+        System.out.printf("| %-20s | %-20s | %-20s | %-20s | %-20s | %-20s | %-20s |\n", "Class Name","Time Spend","Class ID","Professor","Room","Max Occupancy","Current Occupancy");
+        for(classes c :classInfo)
+        {
+            System.out.printf("| %-20s | %-20s | %-20s | %-20s | %-20s | %-20s | %-20s |\n",c.getCN(),c.getTime(),c.getCID(),c.getPro(),c.getRN(),c.getMO(),c.getCO());
+        }
+    }
     public static void createaccount(){ //TODO: Needs to create a itemblock object and database row as well.
         try(Workbook workbook = new XSSFWorkbook(new FileInputStream(filePath()))){
             if (workbook.getSheet("Account Information") == null) {
