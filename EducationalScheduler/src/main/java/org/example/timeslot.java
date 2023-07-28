@@ -1,6 +1,6 @@
 package org.example;
 
-import java.util.Arrays;
+import java.util.*;
 
 public class timeslot {
 	private long ID;
@@ -41,21 +41,21 @@ public class timeslot {
 			{
 			case "Monday":
 				//if((course[1][b.gettime()-8]).equals("NULL\t"))
-				monday[b.gettime()-8]=(b.getCN()).concat("\t");
+				monday[Integer.valueOf(b.gettime())-8]=(b.getCN()).concat("\t");
 				//else
 					//System.out.println("time conflict");
 			case "Tuesday":
-				tuesday[b.gettime()-8]=(b.getCN()).concat("\t");
+				tuesday[Integer.valueOf(b.gettime())-8]=(b.getCN()).concat("\t");
 			case "Wednesday":
-				wednesday[b.gettime()-8]=(b.getCN()).concat("\t");
+				wednesday[Integer.valueOf(b.gettime())-8]=(b.getCN()).concat("\t");
 			case "Thursday":
-				thursday[b.gettime()-8]=(b.getCN()).concat("\t");
+				thursday[Integer.valueOf(b.gettime())-8]=(b.getCN()).concat("\t");
 			case "Friday":
-				friday[b.gettime()-8]=(b.getCN()).concat("\t");
+				friday[Integer.valueOf(b.gettime())-8]=(b.getCN()).concat("\t");
 			case "Saturday":
-				saturday[b.gettime()-8]=(b.getCN()).concat("\t");
+				saturday[Integer.valueOf(b.gettime())-8]=(b.getCN()).concat("\t");
 			case "Sunday":
-				sunday[b.gettime()-8]=(b.getCN()).concat("\t");
+				sunday[Integer.valueOf(b.gettime())-8]=(b.getCN()).concat("\t");
 			}
 			return true;
 		}
