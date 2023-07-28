@@ -86,50 +86,53 @@ public class timeslot {
 	{
 		ID=id;
 	}
-	public void deletecourse(String a，string b)
+	public void deletecourse(String a,String b)
 	{
 		switch(a)
 		{
 		case "Monday":
 			for(int i=1;i<12;i++)
-		{
-				if(course[1][i].equals(b)
-				   course[1][i]="NULL\t";
+			{
+				if(course[1][i].equals(b))
+					{
+					course[1][i]="NULL\t";
+					}
 			}
 		case "Tuesday":
 				for(int i=1;i<12;i++)
 			{
-				if(course[2][i].equals(b)
+				if(course[2][i].equals(b))
 				   course[2][i]="NULL\t";
 			}
 		case "Wednesday":
 				for(int i=1;i<12;i++)
 			{
-				if(course[3][i].equals(b)
+				if(course[3][i].equals(b))
+						
 				   course[3][i]="NULL\t";
 			}
 		case "Thursday":
 				for(int i=1;i<12;i++)
 			{
-				if(course[4][i].equals(b)
+				if(course[4][i].equals(b))
 				   course[4][i]="NULL\t";
 			}
 		case "Friday":
 				for(int i=1;i<12;i++)
 			{
-				if(course[5][i].equals(b)
+				if(course[5][i].equals(b))
 				   course[5][i]="NULL\t";
 			}
 		case "Saturday":
 				for(int i=1;i<12;i++)
 			{
-				if(course[6][i].equals(b)
+				if(course[6][i].equals(b))
 				   course[6][i]="NULL\t";
 			}
 		case "Sunday":
 				for(int i=1;i<12;i++)
 			{
-				if(course[7][i].equals(b)
+				if(course[7][i].equals(b))
 				   course[7][i]="NULL\t";
 		}		
 		}
