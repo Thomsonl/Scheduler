@@ -38,7 +38,7 @@ public class Account {
         DateOfBirth = theDate;
         Email = theEmail;
         ID = (long) theID;
-        //timeslot slot = new timeslot(ID);
+        slot = new timeslot(ID);
     }
     public long generateID(){
         int digits = 8;

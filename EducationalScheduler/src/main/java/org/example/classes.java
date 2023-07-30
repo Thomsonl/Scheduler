@@ -19,7 +19,7 @@ public class classes {
 		MaxOccupancy=0;
 		CurrentOccupancy=0;
 	}
-	public classes(String ClassName, String Time, String Professor, double ClassID, String RoomNum, double MaxOccupancy, double CurrentOccupancy)
+	public classes(String ClassName, String Time, double ClassID, String Professor, String RoomNum, double MaxOccupancy, double CurrentOccupancy)
     {
 		this.Time = Time;
 		this.ClassName = ClassName;

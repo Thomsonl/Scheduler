@@ -2,19 +2,27 @@ package org.example;
 
 public class timeslot {
 	private long ID;
-	private String[]period= {"8:00-9:00\t","9:00-10:00\t","10:00-11:00\t","11:00-12:00\t","12:00-13:00\t","13:00-14:00\t","14:00-15:00\t","15:00-16:00\t","16:00-17:00\t","17:00-18:00\t","18:00-19:00\t","19:00-20:00\t",};
-	private String[] monday =  {"NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t"};
-	private String[] tuesday= {"NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t"};;
-	private String[] wednesday= {"NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t"};;
-	private String[] thursday= {"NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t"};;
-	private String[] friday= {"NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t"};;
-	private String[] saturday= {"NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t"};;
-	private String[] sunday= {"NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t"};;
+	private String[] period= {"8:00-9:00","9:00-10:00","10:00-11:00","11:00-12:00","12:00-13:00","13:00-14:00","14:00-15:00","15:00-16:00","16:00-17:00","17:00-18:00","18:00-19:00","19:00-20:00",};
+	private String[] monday;
+	private String[] tuesday;
+	private String[] wednesday;
+	private String[] thursday;
+	private String[] friday;
+	private String[] saturday;
+	private String[] sunday;
 	
 
 	//On account creation
 	public timeslot(long id) {
-		ID=id;
+		ID = id;
+		String[] nullArray = {null, null, null, null, null, null, null, null, null, null, null, null};
+		this.monday = nullArray;
+		this.tuesday= nullArray;
+		this.wednesday = nullArray;
+		this.thursday = nullArray;
+		this.friday= nullArray;
+		this.saturday = nullArray;
+		this.sunday = nullArray;
 	}
 
 	//Loading timeslot information
@@ -27,8 +35,6 @@ public class timeslot {
 		this.friday= friday.split(",");
 		this.saturday = saturday.split(",");
 		this.sunday = sunday.split(",");
-
-
 	}
 
 	public boolean addcourse(String a, classes b)
@@ -120,8 +126,6 @@ public class timeslot {
 	}
 	public void printcourse()
 	{
-		System.out.println(ID+"'s course:");
-		System.out.print("\t");
 		for(int i=0;i<12;i++)
 		{
 			System.out.print(period[i]);

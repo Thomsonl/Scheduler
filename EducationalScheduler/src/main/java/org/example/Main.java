@@ -41,70 +41,9 @@ public class Main {
         String filePath = System.getProperty("user.dir") + File.separator + relativePath;
         return filePath;
     }
-    
-    //Reads all courses from sheet
-    public static List<classes> readClassesFromSheet(String sheetName) {
-        File file = new File(filePath());
-        if(!file.exists()){
-            try (Workbook workbook = new XSSFWorkbook()){
-                Sheet sheet = workbook.createSheet(sheetName);//Create a new sheet
-                //Write header row
-                Row headerRow = sheet.createRow(0);
-                headerRow.createCell(0).setCellValue("Class Name");
-                headerRow.createCell(1).setCellValue("Time Spend");
-                headerRow.createCell(2).setCellValue("Class ID");
-                headerRow.createCell(3).setCellValue("Professor");
-                headerRow.createCell(4).setCellValue("Room");
-                headerRow.createCell(5).setCellValue("Max Occupancy");
-                headerRow.createCell(6).setCellValue("Current Occupancy");
-                //Save the workbook to a file
-                try(FileOutputStream fileOutputStream = new FileOutputStream(filePath())){
-                    workbook.write(fileOutputStream);
-                }
-            }
-            catch (IOException e){
-                e.printStackTrace();
-            }
-        }
-        List<classes> classesInfo = new ArrayList<>();
-        try {
-            FileInputStream fileInputStream = new FileInputStream(filePath());
-            Workbook workbook = new XSSFWorkbook(fileInputStream);
-
-            // data is in the sheet starts from index0
-            Sheet sheet = workbook.getSheetAt(0);
-
-            for (int i = 1; i <= sheet.getLastRowNum(); i++) {
-                Row row = sheet.getRow(i);
-
-                String className = row.getCell(0).getStringCellValue();
-                String timeSpend = row.getCell(1).getStringCellValue();
-                int classID = (int) row.getCell(2).getNumericCellValue();
-                String professor = row.getCell(3).getStringCellValue();
-                String room = row.getCell(4).getStringCellValue();
-                int maxOccupancy = (int) row.getCell(5).getNumericCellValue();
-                //int currentOccupancy = (int) row.getCell(6).getNumericCellValue();
-
-                classes newclasses = new classes(className,timeSpend,professor,classID,room,maxOccupancy,0);
-                classesInfo.add(newclasses);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return classesInfo;
-    }
-
-    //Prints class information
-    public static void printClassesInfo(List<classes> classInfo){
-        System.out.printf("| %-20s | %-20s | %-20s | %-20s | %-20s | %-20s | %-20s |\n", "Class Name","Time Spend","Class ID","Professor","Room","Max Occupancy","Current Occupancy");
-        for(classes c :classInfo)
-        {
-            System.out.printf("| %-20s | %-20s | %-20s | %-20s | %-20s | %-20s | %-20s |\n",c.getCN(),c.gettime(),c.getCID(),c.getPro(),c.getRN(),c.getMO(),c.getCO());
-        }
-    }
 
     //Creates Account and writes to sheet.xlsx
-    public static void createaccount(){ //TODO: Needs to create a itemblock object and database row as well.
+    public static void createaccount(){
         try(Workbook workbook = new XSSFWorkbook(new FileInputStream(filePath()))){
             if (workbook.getSheet("Account Information") == null) {
                 workbook.createSheet("Account Information");//Create a new sheet
@@ -288,7 +227,7 @@ public class Main {
                 if (cell != null && cell.getCellType() == CellType.NUMERIC && ID == (long) cell.getNumericCellValue()) {
                     slowprint("LOADING CLASSES\n");
                     //TODO: Timeslot needs a better constructor and ability to import all data from excel
-                    //timeslot = new timeslot(row.getCell(0).getNumericCellValue());
+                    timeslot = new timeslot((int) row.getCell(0).getNumericCellValue(), row.getCell(1).getStringCellValue(), row.getCell(1).getStringCellValue(), row.getCell(1).getStringCellValue(), row.getCell(1).getStringCellValue(), row.getCell(1).getStringCellValue(), row.getCell(1).getStringCellValue(), row.getCell(1).getStringCellValue());
                 }
             }
         }
@@ -297,8 +236,69 @@ public class Main {
         }
         return timeslot;
     }
+    
+    //Reads all courses from sheet
+    public static List<classes> readClassesFromSheet() {
+        File file = new File(filePath());
+        if(!file.exists()){
+            try (Workbook workbook = new XSSFWorkbook()){
+                Sheet sheet = workbook.createSheet("Class Information");//Create a new sheet
+                //Write header row
+                Row headerRow = sheet.createRow(0);
+                headerRow.createCell(0).setCellValue("Class Name");
+                headerRow.createCell(1).setCellValue("Time Spend");
+                headerRow.createCell(2).setCellValue("Class ID");
+                headerRow.createCell(3).setCellValue("Professor");
+                headerRow.createCell(4).setCellValue("Room");
+                headerRow.createCell(5).setCellValue("Max Occupancy");
+                headerRow.createCell(6).setCellValue("Current Occupancy");
+                //Save the workbook to a file
+                try(FileOutputStream fileOutputStream = new FileOutputStream(filePath())){
+                    workbook.write(fileOutputStream);
+                }
+            }
+            catch (IOException e){
+                e.printStackTrace();
+            }
+        }
+        List<classes> classesInfo = new ArrayList<>();
+        try {
+            FileInputStream fileInputStream = new FileInputStream(filePath());
+            Workbook workbook = new XSSFWorkbook(fileInputStream);
 
-    //Searches 
+            // data is in the sheet starts from index0
+            Sheet sheet = workbook.getSheet("Class Information");
+
+            for (int i = 1; i <= sheet.getLastRowNum(); i++) {
+                Row row = sheet.getRow(i);
+
+                String className = row.getCell(0).getStringCellValue();
+                String timeSpend = row.getCell(1).getStringCellValue();
+                int classID = (int) row.getCell(2).getNumericCellValue();
+                String professor = row.getCell(3).getStringCellValue();
+                String room = row.getCell(4).getStringCellValue();
+                int maxOccupancy = (int) row.getCell(5).getNumericCellValue();
+                //int currentOccupancy = (int) row.getCell(6).getNumericCellValue();
+
+                classes newclasses = new classes(className,timeSpend,classID,professor,room,maxOccupancy,0);
+                classesInfo.add(newclasses);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return classesInfo;
+    }
+    
+    //Prints class information
+    public static void printClassesInfo(List<classes> classInfo){
+        System.out.printf("| %-20s | %-20s | %-20s | %-20s | %-20s | %-20s | %-20s |\n", "Class Name","Time Spend","Class ID","Professor","Room","Max Occupancy","Current Occupancy");
+        for(classes c :classInfo)
+        {
+            System.out.printf("| %-20s | %-20s | %-20s | %-20s | %-20s | %-20s | %-20s |\n",c.getCN(),c.gettime(),c.getCID(),c.getPro(),c.getRN(),c.getMO(),c.getCO());
+        }
+    }
+
+    //Searches and then outputs Class
     public static classes findClass(String classString) {
         classes theClass = null;
         try (Workbook workbook = WorkbookFactory.create(new File(filePath()))) {
@@ -306,7 +306,7 @@ public class Main {
             for (Row row : sheet) {
                 Cell cell = row.getCell(0);
                 if (cell != null && cell.getCellType() == CellType.STRING && classString.equals(cell.getStringCellValue())) {
-                    theClass = new classes(row.getCell(0).getStringCellValue(), row.getCell(1).getStringCellValue(), row.getCell(2).getStringCellValue(), row.getCell(3).getNumericCellValue(), row.getCell(4).getStringCellValue(), row.getCell(5).getNumericCellValue(), row.getCell(6).getNumericCellValue());
+                    theClass = new classes(row.getCell(0).getStringCellValue(), row.getCell(1).getStringCellValue(), row.getCell(2).getNumericCellValue(), row.getCell(3).getStringCellValue(), row.getCell(4).getStringCellValue(), row.getCell(5).getNumericCellValue(), row.getCell(6).getNumericCellValue());
                     break;
                 }
             }
@@ -332,7 +332,6 @@ public class Main {
         slowprint("1: Create a New Account | 2: Login\n");
         ans = scanner.nextInt();
         scanner.nextLine();
-        System.out.println();
         if (ans == 1) {
             createaccount();
         }
@@ -351,8 +350,9 @@ public class Main {
                 case 1: //Add
                     String day, course;
                     slowprint("What day would you like to modify?\n");    //What day?
+                    scanner.nextLine();
                     day = scanner.nextLine();
-                    readClassesFromSheet("Class Information"); //Display all classes
+                    printClassesInfo(readClassesFromSheet()); //Display all classes
                     slowprint("Which class would you like to add?\n"); //Enter what class you want - string
                     course = scanner.nextLine();
                     classes classes = findClass(course);
@@ -364,11 +364,11 @@ public class Main {
                 case 2: //Drop
                     slowprint("What day would you like to modify?\n");    //What day?
                     day = scanner.nextLine();
-                    readClassesFromSheet("Class Information"); //Display all classes
+                    printClassesInfo(readClassesFromSheet()); //Display all classes
                     slowprint("Which class would you like to drop?\n"); //Enter what class you want - string
                     course = scanner.nextLine();
                     classes = findClass(course);
-                    timeslot.deletecourse(day, classes); //timeslot.dropcourse(day, class)
+                    //timeslot.deletecourse(day, classes); //timeslot.dropcourse(day, class)
                     updateTimeSlot(account);//Update excel
                     slowprint("Your updated schedule is:");
                     timeslot.printcourse(); //timeslot.print();
