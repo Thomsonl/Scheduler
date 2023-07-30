@@ -37,7 +37,7 @@ public class Main {
 
     //File path for sheet.xlsx
     public static String filePath(){
-        String relativePath = "EducationalScheduler\\src\\main\\resources\\sheet.xlsx";
+        String relativePath = "EducationalScheduler" + File.separator + "src" + File.separator + "main" + File.separator + "resources" + File.separator + "sheet.xlsx";
         String filePath = System.getProperty("user.dir") + File.separator + relativePath;
         return filePath;
     }
@@ -48,7 +48,7 @@ public class Main {
             if (workbook.getSheet("Account Information") == null) {
                 workbook.createSheet("Account Information");//Create a new sheet
             }
-            Sheet sheet = workbook.getSheetAt(0);
+            Sheet sheet = workbook.getSheet("Account Information");
             //Write header row
             Row header = sheet.getRow(0);
             if (header == null) {
@@ -282,9 +282,9 @@ public class Main {
                 String professor = row.getCell(3).getStringCellValue();
                 String room = row.getCell(4).getStringCellValue();
                 int maxOccupancy = (int) row.getCell(5).getNumericCellValue();
-                //int currentOccupancy = (int) row.getCell(6).getNumericCellValue();
+                int currentOccupancy = (int) row.getCell(6).getNumericCellValue();
 
-                classes newclasses = new classes(className,timeSpend,classID,professor,room,maxOccupancy,0);
+                classes newclasses = new classes(className,timeSpend,classID,professor,room,maxOccupancy,currentOccupancy);
                 classesInfo.add(newclasses);
             }
         } catch (IOException e) {
@@ -319,6 +319,26 @@ public class Main {
             e.printStackTrace();
         }
         return theClass;
+    }
+
+    //Update Class occupancy in excel
+    public static void updateClassOccupancy(classes corse) {
+        try(Workbook workbook = new XSSFWorkbook(new FileInputStream(filePath()))){
+            Sheet sheet = workbook.getSheet("Class Information");
+            for (Row row : sheet) {
+                Cell cell = row.getCell(0);
+                if (cell != null && cell.getCellType() == CellType.STRING && corse.getCN().equals(cell.getStringCellValue())) {
+                    row.getCell(6).setCellValue(corse.getCO());
+                }
+            }
+            //Save the workbook to a file
+            try(FileOutputStream fileOutputStream = new FileOutputStream(filePath())){
+                workbook.write(fileOutputStream);
+            }
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public static void main(String[] args) {
@@ -366,21 +386,24 @@ public class Main {
                         slowprint("The class is full. Please try again.\n");
                         break;
                     }
+                    classes.setCO(classes.getCO() + 1);
                     timeslot.addcourse(day, classes); //Needs a uniform system with time
-                    updateTimeSlot(account); 
+                    updateTimeSlot(account);
+                    updateClassOccupancy(classes);
                     slowprint("Your updated schedule is:");
                     timeslot.printcourse(); 
                     break;
                 case 2: //Drop
-                    slowprint("What day would you like to modify?\n");    
+                    slowprint("What day would you like to modify?\n");
+                    scanner.nextLine();
                     day = scanner.nextLine();
-                    printClassesInfo(readClassesFromSheet()); 
                     slowprint("Which class would you like to drop?\n"); 
                     course = scanner.nextLine();
                     classes = findClass(course);
-                    timeslot.deletecourse(day, course); //Needs classes object as argument
                     classes.setCO(classes.getCO() - 1);
+                    timeslot.deletecourse(day, course); //Needs classes object as argument
                     updateTimeSlot(account);
+                    updateClassOccupancy(classes);
                     slowprint("Your updated schedule is:");
                     timeslot.printcourse(); 
                     break;
