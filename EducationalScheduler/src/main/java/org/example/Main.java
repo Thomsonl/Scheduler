@@ -118,7 +118,7 @@ public class Main {
             //Write header row
             Row headerRow_timeSlot = sheet_timeslot.createRow(0);
             headerRow_timeSlot.createCell(0).setCellValue("ID");
-            headerRow_timeSlot.createCell(1).setCellValue("Monday"); //TODO: I am thinking of saving all the class IDs in a list and sperating them by commas when stored in excel, should be able to parse when being read back
+            headerRow_timeSlot.createCell(1).setCellValue("Monday");
             headerRow_timeSlot.createCell(2).setCellValue("Tuesday");
             headerRow_timeSlot.createCell(3).setCellValue("Wednesday");
             headerRow_timeSlot.createCell(4).setCellValue("Thursday");
@@ -206,7 +206,7 @@ public class Main {
                 if (cell != null && cell.getCellType() == CellType.STRING && username.equals(cell.getStringCellValue()) && password.equals(row.getCell(1).getStringCellValue())) {
                     slowprint("Login successful. Welcome, " + row.getCell(3).getStringCellValue() + "!\n");
                     loginB = true;
-                    account = new Account(row.getCell(0).getStringCellValue(), row.getCell(1).getStringCellValue(), row.getCell(2).getStringCellValue(), row.getCell(3).getStringCellValue(), row.getCell(4).getStringCellValue(), row.getCell(5).getNumericCellValue()); //TODO: NEEDS TO BE FIXED, ID number gets weird in excel
+                    account = new Account(row.getCell(0).getStringCellValue(), row.getCell(1).getStringCellValue(), row.getCell(2).getStringCellValue(), row.getCell(3).getStringCellValue(), row.getCell(4).getStringCellValue(), row.getCell(5).getNumericCellValue());
                     return account;
                 }
             }
@@ -230,7 +230,6 @@ public class Main {
                 Cell cell = row.getCell(0);
                 if (cell != null && cell.getCellType() == CellType.NUMERIC && ID == (long) cell.getNumericCellValue()) {
                     slowprint("LOADING CLASSES\n");
-                    //TODO: Timeslot needs a better constructor and ability to import all data from excel
                     timeslot = new timeslot((int) row.getCell(0).getNumericCellValue(), row.getCell(1).getStringCellValue(), row.getCell(2).getStringCellValue(), row.getCell(3).getStringCellValue(), row.getCell(4).getStringCellValue(), row.getCell(5).getStringCellValue(), row.getCell(6).getStringCellValue(), row.getCell(7).getStringCellValue());
                 }
             }
@@ -266,10 +265,8 @@ public class Main {
             }
         }
         List<classes> classesInfo = new ArrayList<>();
-        try {
-            FileInputStream fileInputStream = new FileInputStream(filePath());
-            Workbook workbook = new XSSFWorkbook(fileInputStream);
-
+        try (Workbook workbook = new XSSFWorkbook(filePath())){
+           
             // data is in the sheet starts from index0
             Sheet sheet = workbook.getSheet("Class Information");
 
@@ -401,7 +398,7 @@ public class Main {
                     course = scanner.nextLine();
                     classes = findClass(course);
                     classes.setCO(classes.getCO() - 1);
-                    timeslot.deletecourse(day, course); //Needs classes object as argument
+                    timeslot.deletecourse(day, classes); //Needs classes object as argument
                     updateTimeSlot(account);
                     updateClassOccupancy(classes);
                     slowprint("Your updated schedule is:");
