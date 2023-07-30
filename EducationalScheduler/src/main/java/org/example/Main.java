@@ -155,14 +155,14 @@ public class Main {
     private static void updateTimeSlot(Account account)
     {
         try(Workbook workbook = new XSSFWorkbook()){
-            Sheet sheet_timeslot = workbook.getSheetAt(1);
-            //uodate info to timeslot
-            int rowIndex = 1;
-            while (sheet_timeslot.getRow(rowIndex) != null){
-                rowIndex++;
-            }
+            Sheet sheet_timeslot = workbook.getSheet("Timeslot Information");
             timeslot timeslot = account.getSlot();
-            Row row = sheet_timeslot.createRow(rowIndex++);
+            int rowIndex = 1;
+            Row row = sheet_timeslot.getRow(1);
+            while (account.getID() != (long) row.getCell(0).getNumericCellValue()){
+                rowIndex++;
+                row = sheet_timeslot.getRow(rowIndex);
+            }
             row.createCell(0).setCellValue(account.getID());
             row.createCell(1).setCellValue(timeslot.getmonday());
             row.createCell(2).setCellValue(timeslot.gettuesdayday());
