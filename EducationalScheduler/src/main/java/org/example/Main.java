@@ -154,10 +154,13 @@ public class Main {
     //Updates the timeslot information in sheet.xlsx
     private static void updateTimeSlot(Account account)
     {
-        try(Workbook workbook = new XSSFWorkbook()){
+        try(Workbook workbook = new XSSFWorkbook(new FileInputStream(filePath()))){
             Sheet sheet_timeslot = workbook.getSheet("Timeslot Information");
             timeslot timeslot = account.getSlot();
             int rowIndex = 1;
+            if (sheet_timeslot == null) {
+                sheet_timeslot = workbook.createSheet("Timeslot Information");
+            }
             Row row = sheet_timeslot.getRow(1);
             while (account.getID() != (long) row.getCell(0).getNumericCellValue()){
                 rowIndex++;
