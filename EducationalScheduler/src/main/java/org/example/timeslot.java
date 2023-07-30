@@ -310,65 +310,32 @@ public class timeslot {
 		}		
 		}
 	}
-	public void printcourse()
-	{
-		for(int i=0;i<12;i++)
-		{
-			System.out.print(period[i]);
-			if(i==11)
-				System.out.println();
+	public String getCourseForDayTime(int dayIndex, int timeIndex) {
+		String[][] courses = {
+				monday, tuesday, wednesday, thursday, friday, saturday, sunday
+		};
+		return courses[dayIndex][timeIndex];
+	}
+	public void printcourse() {
+		// Print the header row with days
+		System.out.print("Time       ");
+		String[] days = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"};
+		for (String day : days) {
+			System.out.printf("%-20s", day);
 		}
-		System.out.print("Monday:\t");
-		for(int i=0;i<12;i++)
-		{
-			System.out.print(monday[i]);
-			if(i==11)
-				System.out.println();
+		System.out.println();
+
+		// Print each time slot's schedule
+		for (int i = 0; i < 12; i++) {
+			System.out.printf("%-10s  ", period[i]);
+			System.out.printf("%-20s", getCourseForDayTime(0, i)); // Monday
+			System.out.printf("%-20s", getCourseForDayTime(1, i)); // Tuesday
+			System.out.printf("%-20s", getCourseForDayTime(2, i)); // Wednesday
+			System.out.printf("%-20s", getCourseForDayTime(3, i)); // Thursday
+			System.out.printf("%-20s ", getCourseForDayTime(4, i)); // Friday
+			System.out.printf("%-20s", getCourseForDayTime(5, i)); // Saturday
+			System.out.printf("%-20s%n", getCourseForDayTime(6, i)); // Sunday
 		}
-		System.out.print("Tuesday:\t");
-		for(int i=0;i<12;i++)
-		{
-			System.out.print(tuesday[i]);
-			if(i==11)
-				System.out.println();
-		}
-		System.out.print("Wednesday:\t");
-		for(int i=0;i<12;i++)
-		{
-			System.out.print(wednesday[i]);
-			if(i==11)
-				System.out.println();
-		}
-		System.out.print("Thursday:\t");
-		for(int i=0;i<12;i++)
-		{
-			System.out.print(thursday[i]);
-			if(i==11)
-				System.out.println();
-		}
-		System.out.print("Friday:\t");
-		for(int i=0;i<12;i++)
-		{
-			System.out.print(friday[i]);
-			if(i==11)
-				System.out.println();
-		}
-		System.out.print("Saturday:\t");
-		for(int i=0;i<12;i++)
-		{
-			System.out.print(saturday[i]);
-			if(i==11)
-				System.out.println();
-		}
-		System.out.print("Sunday:\t");
-		for(int i=0;i<12;i++)
-		{
-			System.out.print(sunday[i]);
-			if(i==11)
-				System.out.println();
-		}
-			
-		
 	}
 	public String getmonday()
 	{	
