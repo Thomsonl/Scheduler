@@ -84,7 +84,7 @@ public class timeslot {
 					break;
 					
 				}
-				break;
+			break;
 			case "Tuesday":
 				switch(b.gettime())
 				{
@@ -126,7 +126,7 @@ public class timeslot {
 					break;
 					
 				}
-				break;
+			break;
 			case "Wednesday":
 				switch(b.gettime())
 				{
@@ -168,7 +168,7 @@ public class timeslot {
 					break;
 					
 				}
-				break;
+			break;
 			case "Thursday":
 				switch(b.gettime())
 				{
@@ -210,7 +210,7 @@ public class timeslot {
 					break;
 					
 				}
-				break;
+			break;
 			case "Friday":
 				switch(b.gettime())
 				{
@@ -252,7 +252,7 @@ public class timeslot {
 					break;
 					
 				}
-				break;
+			break;
 			case "Saturday":
 				switch(b.gettime())
 				{
@@ -294,7 +294,7 @@ public class timeslot {
 					break;
 					
 				}
-				break;
+			break;
 			case "Sunday":
 				switch(b.gettime())
 				{
@@ -336,7 +336,7 @@ public class timeslot {
 					break;
 					
 				}
-				break;
+			break;
 			}
 			return true;
 		}
