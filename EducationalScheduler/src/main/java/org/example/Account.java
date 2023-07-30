@@ -11,7 +11,7 @@ public class Account {
     private String Name;
     private String DateOfBirth;
     private long ID;
-    timeslot slot = new timeslot(ID);
+    private timeslot slot;
     //Default constructor
     public Account(){
         Username = null;
@@ -89,5 +89,13 @@ public class Account {
 
     public long getID() {
         return ID;
+    }
+
+    public timeslot getSlot() {
+        return slot;
+    }
+
+    public void setSlot(timeslot slot) {
+        this.slot = slot;
     }
 }

@@ -1,17 +1,15 @@
 package org.example;
 
-import java.util.*;
-
 public class timeslot {
 	private long ID;
-	String[]period= {"8:00-9:00\t","9:00-10:00\t","10:00-11:00\t","11:00-12:00\t","12:00-13:00\t","13:00-14:00\t","14:00-15:00\t","15:00-16:00\t","16:00-17:00\t","17:00-18:00\t","18:00-19:00\t","19:00-20:00\t",};
-	String[] monday =  {"NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t"};
-	String[] tuesday= {"NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t"};;
-	String[] wednesday= {"NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t"};;
-	String[] thursday= {"NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t"};;
-	String[] friday= {"NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t"};;
-	String[] saturday= {"NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t"};;
-	String[] sunday= {"NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t"};;
+	private String[]period= {"8:00-9:00\t","9:00-10:00\t","10:00-11:00\t","11:00-12:00\t","12:00-13:00\t","13:00-14:00\t","14:00-15:00\t","15:00-16:00\t","16:00-17:00\t","17:00-18:00\t","18:00-19:00\t","19:00-20:00\t",};
+	private String[] monday =  {"NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t"};
+	private String[] tuesday= {"NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t"};;
+	private String[] wednesday= {"NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t"};;
+	private String[] thursday= {"NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t"};;
+	private String[] friday= {"NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t"};;
+	private String[] saturday= {"NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t"};;
+	private String[] sunday= {"NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t","NULL\t"};;
 	
 
 	//On account creation
@@ -183,32 +181,67 @@ public class timeslot {
 		
 	}
 	public String getmonday()
-	{
-		return Arrays.toString(monday);
+	{	
+		String output = new String();
+		for (int i = 0; i < monday.length - 1; i++){
+			output += monday[i] + ",";
+		}
+		output += monday[monday.length - 1];
+		return output;
 	}
 	public String gettuesdayday()
-	{
-		return Arrays.toString(tuesday);
+	{	
+		String output = new String();
+		for (int i = 0; i < tuesday.length - 1; i++){
+			output += tuesday[i] + ",";
+		}
+		output += tuesday[tuesday.length - 1];
+		return output;
 	}
 	public String getwednesdayday()
-	{
-		return Arrays.toString(wednesday);
+	{	
+		String output = new String();
+		for (int i = 0; i < wednesday.length - 1; i++){
+			output += wednesday[i] + ",";
+		}
+		output += wednesday[wednesday.length - 1];
+		return output;
 	}
 	public String getthursday()
-	{
-		return Arrays.toString(thursday);
+	{	
+		String output = new String();
+		for (int i = 0; i < thursday.length - 1; i++){
+			output += thursday[i] + ",";
+		}
+		output += thursday[thursday.length - 1];
+		return output;
 	}
 	public String getfriday()
-	{
-		return Arrays.toString(friday);
+	{	
+		String output = new String();
+		for (int i = 0; i < friday.length - 1; i++){
+			output += friday[i] + ",";
+		}
+		output += friday[friday.length - 1];
+		return output;
 	}
 	public String getsaturdday()
-	{
-		return Arrays.toString(saturday);
+	{	
+		String output = new String();
+		for (int i = 0; i < saturday.length - 1; i++){
+			output += saturday[i] + ",";
+		}
+		output += saturday[saturday.length - 1];
+		return output;
 	}
 	public String getsunday()
-	{
-		return Arrays.toString(sunday);
+	{	
+		String output = new String();
+		for (int i = 0; i < sunday.length - 1; i++){
+			output += sunday[i] + ",";
+		}
+		output += sunday[sunday.length - 1];
+		return output;
 	}
 	
 	//Acessor methods for all arrays that return string version of array(example: [1,2,3,4] -> "1,2,3,4")

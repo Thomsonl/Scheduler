@@ -7,27 +7,27 @@ public class classes {
 	private String RoomNum;
 	private int MaxOccupancy;
 	private int CurrentOccupancy;
-	private String time;
+	private String Time;
 	
 	public classes()
 	{
 		ClassName=null;
 		Professor=null;
 		ClassID=0;
-		time=null;
+		Time=null;
 		RoomNum=null;
 		MaxOccupancy=0;
 		CurrentOccupancy=0;
 	}
-	public classes(String ClassNamenew,String timenew, String Professornew, int ClassIDnew, String RoomNumnew, int MaxOccupancynew, int CurrentOccupancynew)
+	public classes(String ClassName, String Time, String Professor, double ClassID, String RoomNum, double MaxOccupancy, double CurrentOccupancy)
     {
-		time=timenew;
-		ClassName=ClassNamenew;
-		Professor=Professornew;
-		ClassID=ClassIDnew;
-		RoomNum=RoomNumnew;
-		MaxOccupancy=MaxOccupancynew;
-		CurrentOccupancy=CurrentOccupancynew;
+		this.Time = Time;
+		this.ClassName = ClassName;
+		this.Professor = Professor;
+		this.ClassID = (int) ClassID;
+		this.RoomNum = RoomNum;
+		this.MaxOccupancy = (int) MaxOccupancy;
+		this.CurrentOccupancy= (int) CurrentOccupancy;
 	}
 	/*public void settime(String a)
 	{
@@ -38,7 +38,7 @@ public class classes {
 	}*/
 	public String gettime()
 	{
-		return time;
+		return Time;
 	}
 	public void setCN(String a)
 	{
@@ -90,7 +90,7 @@ public class classes {
 	}
 	public void print()
 	{
-		System.out.println(time+":00");
+		System.out.println(Time+":00");
 		System.out.println(ClassName);
 		System.out.println(Professor);
 		System.out.println(ClassID);

@@ -19,8 +19,10 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class Main {
 
+    //All scanner usages
     private static Scanner scanner = new Scanner(System.in);
 
+    //Writes to console with delays
     public static void slowprint(String string) {
         for (int i = 0; i < string.length(); i++) {
             char c = string.charAt(i);
@@ -33,16 +35,18 @@ public class Main {
         }
     }
 
+    //File path for sheet.xlsx
     public static String filePath(){
         String relativePath = "EducationalScheduler\\src\\main\\resources\\sheet.xlsx";
         String filePath = System.getProperty("user.dir") + File.separator + relativePath;
         return filePath;
     }
-    public static List<classes> readClassesFromSheet(String filePath,String sheetName) {
-        File file = new File(filePath);
+    
+    //Reads all courses from sheet
+    public static List<classes> readClassesFromSheet(String sheetName) {
+        File file = new File(filePath());
         if(!file.exists()){
-            try{
-                Workbook workbook = new XSSFWorkbook();
+            try (Workbook workbook = new XSSFWorkbook()){
                 Sheet sheet = workbook.createSheet(sheetName);//Create a new sheet
                 //Write header row
                 Row headerRow = sheet.createRow(0);
@@ -54,7 +58,7 @@ public class Main {
                 headerRow.createCell(5).setCellValue("Max Occupancy");
                 headerRow.createCell(6).setCellValue("Current Occupancy");
                 //Save the workbook to a file
-                try(FileOutputStream fileOutputStream = new FileOutputStream(filePath)){
+                try(FileOutputStream fileOutputStream = new FileOutputStream(filePath())){
                     workbook.write(fileOutputStream);
                 }
             }
@@ -64,7 +68,7 @@ public class Main {
         }
         List<classes> classesInfo = new ArrayList<>();
         try {
-            FileInputStream fileInputStream = new FileInputStream(filePath);
+            FileInputStream fileInputStream = new FileInputStream(filePath());
             Workbook workbook = new XSSFWorkbook(fileInputStream);
 
             // data is in the sheet starts from index0
@@ -89,13 +93,17 @@ public class Main {
         }
         return classesInfo;
     }
+
+    //Prints class information
     public static void printClassesInfo(List<classes> classInfo){
         System.out.printf("| %-20s | %-20s | %-20s | %-20s | %-20s | %-20s | %-20s |\n", "Class Name","Time Spend","Class ID","Professor","Room","Max Occupancy","Current Occupancy");
         for(classes c :classInfo)
         {
-            System.out.printf("| %-20s | %-20s | %-20s | %-20s | %-20s | %-20s | %-20s |\n",c.getCN(),c.getTime(),c.getCID(),c.getPro(),c.getRN(),c.getMO(),c.getCO());
+            System.out.printf("| %-20s | %-20s | %-20s | %-20s | %-20s | %-20s | %-20s |\n",c.getCN(),c.gettime(),c.getCID(),c.getPro(),c.getRN(),c.getMO(),c.getCO());
         }
     }
+
+    //Creates Account and writes to sheet.xlsx
     public static void createaccount(){ //TODO: Needs to create a itemblock object and database row as well.
         try(Workbook workbook = new XSSFWorkbook(new FileInputStream(filePath()))){
             if (workbook.getSheet("Account Information") == null) {
@@ -147,7 +155,9 @@ public class Main {
 
             slowprint("Alright, you're all set. Let's login to your new account!\n");
             Account account = new Account(username, password, email, name, dob);
-            timeslot timeslotInfo = new timeslot();
+            timeslot timeslotInfo = new timeslot(account.getID());
+            account.setSlot(timeslotInfo);
+
             //Write account information to the sheet
             int rowIndex = 1;
             while (sheet.getRow(rowIndex) != null){
@@ -165,6 +175,7 @@ public class Main {
                 workbook.createSheet("Timeslot Information");
             }
             Sheet sheet_timeslot = workbook.getSheetAt(1);
+
             //Write header row
             Row headerRow_timeSlot = sheet_timeslot.createRow(0);
             headerRow_timeSlot.createCell(0).setCellValue("ID");
@@ -181,17 +192,15 @@ public class Main {
             while (sheet_timeslot.getRow(rowIndex) != null){
                 rowIndex++;
             }
-            headerRow_timeSlot.createCell(1).setCellValue("Class ID");           
-
-
-            //Write timeslot information to the sheet
-            rowIndex = 1;
-            while (sheet_timeslot.getRow(rowIndex) != null){
-                rowIndex++;
-            }
             row = sheet_timeslot.createRow(rowIndex++);
-            row.createCell(0).setCellValue(timeslotInfo.getID());
-            row.createCell(1).setCellValue(timeslotInfo.getlist());
+            row.createCell(0).setCellValue(account.getID());
+            row.createCell(1).setCellValue(timeslotInfo.getmonday());
+            row.createCell(2).setCellValue(timeslotInfo.gettuesdayday());
+            row.createCell(3).setCellValue(timeslotInfo.getwednesdayday());
+            row.createCell(4).setCellValue(timeslotInfo.getthursday());
+            row.createCell(5).setCellValue(timeslotInfo.getfriday());
+            row.createCell(6).setCellValue(timeslotInfo.getsaturdday());
+            row.createCell(7).setCellValue(timeslotInfo.getsunday());       
 
             //Save the workbook to a file
             try (FileOutputStream fileOutputStream = new FileOutputStream(filePath())) {
@@ -202,27 +211,30 @@ public class Main {
             e.printStackTrace();
         }
     }
-    private static void updateTimeSlot(List<Account> AccountInfo,String filePath)
+    
+    //Updates the timeslot information in sheet.xlsx
+    private static void updateTimeSlot(Account account)
     {
-        try{
-            Workbook workbook = new XSSFWorkbook();
+        try(Workbook workbook = new XSSFWorkbook()){
             Sheet sheet_timeslot = workbook.getSheetAt(1);
             //uodate info to timeslot
-            for(int i=0;i<AccountInfo.size();i++)
-            {
-                Account account = AccountInfo.get(i);
-                Row row = sheet_timeslot.createRow(i+1);
-                row.createCell(0).setCellValue(account.getID());
-                row.createCell(1).setCellValue(account.slot.getmonday());
-                row.createCell(2).setCellValue(account.slot.gettuesdayday());
-                row.createCell(3).setCellValue(account.slot.getwednesdayday());
-                row.createCell(4).setCellValue(account.slot.getthursday());
-                row.createCell(5).setCellValue(account.slot.getfriday());
-                row.createCell(6).setCellValue(account.slot.getsaturdday());
-                row.createCell(7).setCellValue(account.slot.getsunday());
+            int rowIndex = 1;
+            while (sheet_timeslot.getRow(rowIndex) != null){
+                rowIndex++;
             }
+            timeslot timeslot = account.getSlot();
+            Row row = sheet_timeslot.createRow(rowIndex++);
+            row.createCell(0).setCellValue(account.getID());
+            row.createCell(1).setCellValue(timeslot.getmonday());
+            row.createCell(2).setCellValue(timeslot.gettuesdayday());
+            row.createCell(3).setCellValue(timeslot.getwednesdayday());
+            row.createCell(4).setCellValue(timeslot.getthursday());
+            row.createCell(5).setCellValue(timeslot.getfriday());
+            row.createCell(6).setCellValue(timeslot.getsaturdday());
+            row.createCell(7).setCellValue(timeslot.getsunday());
+            
             //Save the workbook to a file
-            try(FileOutputStream fileOutputStream = new FileOutputStream(filePath)){
+            try(FileOutputStream fileOutputStream = new FileOutputStream(filePath())){
                 workbook.write(fileOutputStream);
             }
         }
@@ -230,6 +242,8 @@ public class Main {
             e.printStackTrace();
         }
     }
+
+    //Allows user to access their account information
     public static Account login(){
         Account account = null;
         try (Workbook workbook = WorkbookFactory.create(new File(filePath()))) {
@@ -264,6 +278,7 @@ public class Main {
         return account;
     }
 
+    //Reads and creates timeslot object from sheet.xlsx
     public static timeslot timeslots(long ID) {
         timeslot timeslot = null;
         try (Workbook workbook = WorkbookFactory.create(new File(filePath()))) {
@@ -283,8 +298,23 @@ public class Main {
         return timeslot;
     }
 
-    public static void classes() {
-        //print all classes
+    //Searches 
+    public static classes findClass(String classString) {
+        classes theClass = null;
+        try (Workbook workbook = WorkbookFactory.create(new File(filePath()))) {
+            Sheet sheet = workbook.getSheet("Class Information");
+            for (Row row : sheet) {
+                Cell cell = row.getCell(0);
+                if (cell != null && cell.getCellType() == CellType.STRING && classString.equals(cell.getStringCellValue())) {
+                    theClass = new classes(row.getCell(0).getStringCellValue(), row.getCell(1).getStringCellValue(), row.getCell(2).getStringCellValue(), row.getCell(3).getNumericCellValue(), row.getCell(4).getStringCellValue(), row.getCell(5).getNumericCellValue(), row.getCell(6).getNumericCellValue());
+                    break;
+                }
+            }
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+        return theClass;
     }
 
     public static void main(String[] args) {
@@ -307,23 +337,47 @@ public class Main {
             createaccount();
         }
         Account account = login();
-        timeslot timeslot = timeslots(account.getID());
-        //timeslot.print();
-        //WHILE LOOP
-        //Add or drop classes?
-        //Add
-            //What day?
-            //Display all classes
-            //Enter what class you want - string
-            //timeslot.addcourse(day, class)
-            //Update excel
-            //timeslot.print();
-        //Drop
-            //What day?
-            //Display classes for that day already enrolled in
-            //Which class to drop? - string
-            //timeslot.dropcourse(day, class)
-        
+        timeslot timeslot = account.getSlot();
+        timeslot.printcourse();
+        boolean cont = true;
+        while (cont) { //WHILE LOOP
+            slowprint("Would you like to add or drop classes?\n");//Add or drop classes?
+            slowprint("1: Add | 2: Drop | 3: Exit\n");
+            ans = scanner.nextInt();
+            switch (ans){
+                case 3:
+                    cont = false;
+                    break;
+                case 1: //Add
+                    String day, course;
+                    slowprint("What day would you like to modify?\n");    //What day?
+                    day = scanner.nextLine();
+                    readClassesFromSheet("Class Information"); //Display all classes
+                    slowprint("Which class would you like to add?\n"); //Enter what class you want - string
+                    course = scanner.nextLine();
+                    classes classes = findClass(course);
+                    timeslot.addcourse(day, classes); //timeslot.addcourse(day, class)
+                    updateTimeSlot(account); //Update excel
+                    slowprint("Your updated schedule is:");
+                    timeslot.printcourse(); //timeslot.print();
+                    break;
+                case 2: //Drop
+                    slowprint("What day would you like to modify?\n");    //What day?
+                    day = scanner.nextLine();
+                    readClassesFromSheet("Class Information"); //Display all classes
+                    slowprint("Which class would you like to drop?\n"); //Enter what class you want - string
+                    course = scanner.nextLine();
+                    classes = findClass(course);
+                    timeslot.deletecourse(day, classes); //timeslot.dropcourse(day, class)
+                    updateTimeSlot(account);//Update excel
+                    slowprint("Your updated schedule is:");
+                    timeslot.printcourse(); //timeslot.print();
+                    break;
+                default:
+                    slowprint("Invalid input. Please try again.\n");
+                    break;
+            }
+        }
         //TODO: Maybe an account settings option to change email, password and username
         scanner.close();
     }
