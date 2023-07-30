@@ -309,7 +309,7 @@ public class Main {
             Sheet sheet = workbook.getSheet("Class Information");
             for (Row row : sheet) {
                 Cell cell = row.getCell(0);
-                if (cell != null && cell.getCellType() == CellType.STRING && classString.equals(cell.getStringCellValue())) {
+                if (cell != null && cell.getCellType() == CellType.STRING && classString.toUpperCase().equals(cell.getStringCellValue().toUpperCase())) {
                     theClass = new classes(row.getCell(0).getStringCellValue(), row.getCell(1).getStringCellValue(), row.getCell(2).getNumericCellValue(), row.getCell(3).getStringCellValue(), row.getCell(4).getStringCellValue(), row.getCell(5).getNumericCellValue(), row.getCell(6).getNumericCellValue());
                     break;
                 }
