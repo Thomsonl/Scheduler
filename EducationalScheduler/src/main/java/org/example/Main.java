@@ -159,6 +159,7 @@ public class Main {
             timeslot timeslot = account.getSlot();
             int rowIndex = 1;
             if (sheet_timeslot == null) {
+                slowprint("Sheet created");
                 sheet_timeslot = workbook.createSheet("Timeslot Information");
             }
             Row row = sheet_timeslot.getRow(1);
@@ -230,7 +231,7 @@ public class Main {
                 if (cell != null && cell.getCellType() == CellType.NUMERIC && ID == (long) cell.getNumericCellValue()) {
                     slowprint("LOADING CLASSES\n");
                     //TODO: Timeslot needs a better constructor and ability to import all data from excel
-                    timeslot = new timeslot((int) row.getCell(0).getNumericCellValue(), row.getCell(1).getStringCellValue(), row.getCell(1).getStringCellValue(), row.getCell(1).getStringCellValue(), row.getCell(1).getStringCellValue(), row.getCell(1).getStringCellValue(), row.getCell(1).getStringCellValue(), row.getCell(1).getStringCellValue());
+                    timeslot = new timeslot((int) row.getCell(0).getNumericCellValue(), row.getCell(1).getStringCellValue(), row.getCell(2).getStringCellValue(), row.getCell(3).getStringCellValue(), row.getCell(4).getStringCellValue(), row.getCell(5).getStringCellValue(), row.getCell(6).getStringCellValue(), row.getCell(7).getStringCellValue());
                 }
             }
         }
@@ -339,7 +340,9 @@ public class Main {
             createaccount();
         }
         Account account = login();
-        timeslot timeslot = account.getSlot();
+        timeslot timeslot = timeslots(account.getID());
+        account.setSlot(timeslot);
+        //timeslot timeslot = account.getSlot();
         timeslot.printcourse();
         boolean cont = true;
         while (cont) { //WHILE LOOP
