@@ -2,7 +2,7 @@ package org.example;
 
 public class timeslot {
 	private long ID;
-	private String[] period= {"8:00-9:00","9:00-10:00","10:00-11:00","11:00-12:00","12:00-13:00","13:00-14:00","14:00-15:00","15:00-16:00","16:00-17:00","17:00-18:00","18:00-19:00","19:00-20:00",};
+	private String[] period= {"08:00-09:00","09:00-10:00","10:00-11:00","11:00-12:00","12:00-13:00","13:00-14:00","14:00-15:00","15:00-16:00","16:00-17:00","17:00-18:00","18:00-19:00","19:00-20:00",};
 	private String[] monday;
 	private String[] tuesday;
 	private String[] wednesday;
@@ -318,23 +318,23 @@ public class timeslot {
 	}
 	public void printcourse() {
 		// Print the header row with days
-		System.out.print("Time       ");
+		System.out.print("Time         |");
 		String[] days = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"};
 		for (String day : days) {
-			System.out.printf("%-20s", day);
+			System.out.printf("%-20s|", day);
 		}
 		System.out.println();
 
 		// Print each time slot's schedule
 		for (int i = 0; i < 12; i++) {
-			System.out.printf("%-10s  ", period[i]);
-			System.out.printf("%-20s", getCourseForDayTime(0, i)); // Monday
-			System.out.printf("%-20s", getCourseForDayTime(1, i)); // Tuesday
-			System.out.printf("%-20s", getCourseForDayTime(2, i)); // Wednesday
-			System.out.printf("%-20s", getCourseForDayTime(3, i)); // Thursday
-			System.out.printf("%-20s ", getCourseForDayTime(4, i)); // Friday
-			System.out.printf("%-20s", getCourseForDayTime(5, i)); // Saturday
-			System.out.printf("%-20s%n", getCourseForDayTime(6, i)); // Sunday
+			System.out.printf("%-10s  |", period[i]);
+			System.out.printf("%-20s|", getCourseForDayTime(0, i)); // Monday
+			System.out.printf("%-20s|", getCourseForDayTime(1, i)); // Tuesday
+			System.out.printf("%-20s|", getCourseForDayTime(2, i)); // Wednesday
+			System.out.printf("%-20s|", getCourseForDayTime(3, i)); // Thursday
+			System.out.printf("%-20s| ", getCourseForDayTime(4, i)); // Friday
+			System.out.printf("%-20s|", getCourseForDayTime(5, i)); // Saturday
+			System.out.printf("%-20s|%n", getCourseForDayTime(6, i)); // Sunday
 		}
 	}
 	public String getmonday()
