@@ -45,21 +45,21 @@ public class timeslot {
 			{
 			case "Monday":
 				//if((course[1][b.gettime()-8]).equals("NULL\t"))
-				monday[Integer.valueOf(b.gettime())-8]=(b.getCN()).concat("\t");
+				monday[Integer.valueOf(b.gettime().charAt(0))-8]=(b.getCN()).concat("\t");
 				//else
 					//System.out.println("time conflict");
 			case "Tuesday":
-				tuesday[Integer.valueOf(b.gettime())-8]=(b.getCN()).concat("\t");
+				tuesday[Integer.valueOf(b.gettime().charAt(0))-8]=(b.getCN()).concat("\t");
 			case "Wednesday":
-				wednesday[Integer.valueOf(b.gettime())-8]=(b.getCN()).concat("\t");
+				wednesday[Integer.valueOf(b.gettime().charAt(0))-8]=(b.getCN()).concat("\t");
 			case "Thursday":
-				thursday[Integer.valueOf(b.gettime())-8]=(b.getCN()).concat("\t");
+				thursday[Integer.valueOf(b.gettime().charAt(0))-8]=(b.getCN()).concat("\t");
 			case "Friday":
-				friday[Integer.valueOf(b.gettime())-8]=(b.getCN()).concat("\t");
+				friday[Integer.valueOf(b.gettime().charAt(0))-8]=(b.getCN()).concat("\t");
 			case "Saturday":
-				saturday[Integer.valueOf(b.gettime())-8]=(b.getCN()).concat("\t");
+				saturday[Integer.valueOf(b.gettime().charAt(0))-8]=(b.getCN()).concat("\t");
 			case "Sunday":
-				sunday[Integer.valueOf(b.gettime())-8]=(b.getCN()).concat("\t");
+				sunday[Integer.valueOf(b.gettime().charAt(0))-8]=(b.getCN()).concat("\t");
 			}
 			return true;
 		}
