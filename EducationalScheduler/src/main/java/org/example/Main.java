@@ -300,7 +300,7 @@ public class Main {
     }
 
     //Searches and then outputs Class
-    public static classes findClass(String classString) {
+    public static classes findClass(String classString) throws ClassesNotFoundException{
         classes theClass = null;
         try (Workbook workbook = WorkbookFactory.create(new File(filePath()))) {
             Sheet sheet = workbook.getSheet("Class Information");
@@ -314,6 +314,9 @@ public class Main {
         }
         catch (IOException e) {
             e.printStackTrace();
+        }
+        if(theClass==null){
+            throw new ClassesNotFoundException("The class you enter can not be found!");
         }
         return theClass;
     }
@@ -376,33 +379,50 @@ public class Main {
                     scanner.nextLine();
                     day = scanner.nextLine();
                     printClassesInfo(readClassesFromSheet()); 
-                    slowprint("Which class would you like to add?\n"); 
-                    course = scanner.nextLine();
-                    classes classes = findClass(course);
-                    if (classes.getMO() <= classes.getCO()) {
-                        slowprint("The class is full. Please try again.\n");
-                        break;
-                    }
-                    classes.setCO(classes.getCO() + 1);
-                    timeslot.addcourse(day, classes); //Needs a uniform system with time
-                    updateTimeSlot(account);
-                    updateClassOccupancy(classes);
-                    slowprint("Your updated schedule is:");
-                    timeslot.printcourse(); 
+                    boolean found = false;
+                    while(!found){
+                        try{
+                            slowprint("Which class would you like to add?\n");
+                            course = scanner.nextLine();
+                            classes classes = findClass(course);
+                            if (classes.getMO() <= classes.getCO()) {
+                                slowprint("The class is full. Please try again.\n");
+                                break;
+                            }
+                            classes.setCO(classes.getCO() + 1);
+                            timeslot.addcourse(day, classes); //Needs a uniform system with time
+                            updateTimeSlot(account);
+                            updateClassOccupancy(classes);
+                            slowprint("Your updated schedule is:");
+                            timeslot.printcourse();
+                            found=true;
+                        }catch (ClassesNotFoundException e){
+                            System.out.println(e.getMessage());
+                        }
+                    } 
                     break;
                 case 2: //Drop
                     slowprint("What day would you like to modify?\n");
                     scanner.nextLine();
                     day = scanner.nextLine();
-                    slowprint("Which class would you like to drop?\n"); 
-                    course = scanner.nextLine();
-                    classes = findClass(course);
-                    classes.setCO(classes.getCO() - 1);
-                    timeslot.deletecourse(day, classes); //Needs classes object as argument
-                    updateTimeSlot(account);
-                    updateClassOccupancy(classes);
-                    slowprint("Your updated schedule is:");
-                    timeslot.printcourse(); 
+                    found = false;
+                    while(!found)
+                    {
+                        slowprint("Which class would you like to drop?\n");
+                        course = scanner.nextLine();
+                        try {
+                            classes classes = findClass(course);
+                            classes.setCO(classes.getCO() - 1);
+                            timeslot.deletecourse(day, classes); //Needs classes object as argument
+                            updateTimeSlot(account);
+                            updateClassOccupancy(classes);
+                            slowprint("Your updated schedule is:");
+                            timeslot.printcourse();
+                            found=true;
+                        }catch (ClassesNotFoundException e){
+                            System.out.println(e.getMessage());
+                        }
+                    } 
                     break;
                 default:
                     slowprint("Invalid input. Please try again.\n");
@@ -411,5 +431,14 @@ public class Main {
         }
         //TODO: Maybe an account settings option to change email, password and username
         scanner.close();
+    }
+}
+
+class ClassesNotFoundException extends Exception{
+    public ClassesNotFoundException(){
+        super();
+    }
+    public ClassesNotFoundException(String message){
+        super(message);
     }
 }
