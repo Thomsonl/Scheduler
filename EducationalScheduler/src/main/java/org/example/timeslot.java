@@ -352,9 +352,11 @@ public class timeslot {
 	{
 		ID=id;
 	}
-	public void deletecourse(String c,String b)
+	public void deletecourse(String c,classes d)
 	{
 		String a = (c.substring(0, 1).toUpperCase() + c.substring(1));
+		String b1=d.getCN();
+		String b=(b1.substring(0, 1).toUpperCase() + b1.substring(1))
 		switch(a)
 		{
 		case "Monday":
