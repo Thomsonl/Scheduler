@@ -349,29 +349,29 @@ public class Main {
                     break;
                 case 1: //Add
                     String day, course;
-                    slowprint("What day would you like to modify?\n");    //What day?
+                    slowprint("What day would you like to modify?\n");    
                     scanner.nextLine();
                     day = scanner.nextLine();
-                    printClassesInfo(readClassesFromSheet()); //Display all classes
-                    slowprint("Which class would you like to add?\n"); //Enter what class you want - string
+                    printClassesInfo(readClassesFromSheet()); 
+                    slowprint("Which class would you like to add?\n"); 
                     course = scanner.nextLine();
                     classes classes = findClass(course);
-                    timeslot.addcourse(day, classes); //timeslot.addcourse(day, class)
-                    updateTimeSlot(account); //Update excel
+                    timeslot.addcourse(day, classes); //Needs a uniform system with time
+                    updateTimeSlot(account); 
                     slowprint("Your updated schedule is:");
-                    timeslot.printcourse(); //timeslot.print();
+                    timeslot.printcourse(); 
                     break;
                 case 2: //Drop
-                    slowprint("What day would you like to modify?\n");    //What day?
+                    slowprint("What day would you like to modify?\n");    
                     day = scanner.nextLine();
-                    printClassesInfo(readClassesFromSheet()); //Display all classes
-                    slowprint("Which class would you like to drop?\n"); //Enter what class you want - string
+                    printClassesInfo(readClassesFromSheet()); 
+                    slowprint("Which class would you like to drop?\n"); 
                     course = scanner.nextLine();
                     classes = findClass(course);
-                    //timeslot.deletecourse(day, classes); //timeslot.dropcourse(day, class)
-                    updateTimeSlot(account);//Update excel
+                    //timeslot.deletecourse(day, classes); //Needs classes object as argument
+                    updateTimeSlot(account);
                     slowprint("Your updated schedule is:");
-                    timeslot.printcourse(); //timeslot.print();
+                    timeslot.printcourse(); 
                     break;
                 default:
                     slowprint("Invalid input. Please try again.\n");
