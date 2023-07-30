@@ -359,52 +359,52 @@ public class timeslot {
 			for(int i=0;i<12;i++)
 			{
 				if(monday[i].equals(b))
-					monday[i]="NULL\t";
+					monday[i]=null;
 			}
-			break；
+			break;
 		case "Tuesday":
 				for(int i=0;i<12;i++)
 			{
 				if(tuesday[i].equals(b))
-				   tuesday[i]="NULL\t";
+				   tuesday[i]=null;
 			}
-			break；
+			break;
 		case "Wednesday":
 				for(int i=0;i<12;i++)
 			{
 				if(wednesday[i].equals(b))
 						
-				   wednesday[i]="NULL\t";
+				   wednesday[i]=null;
 			}
-			break；
+			break;
 		case "Thursday":
 				for(int i=0;i<12;i++)
 			{
 				if(thursday[i].equals(b))
-				   thursday[i]="NULL\t";
+				   thursday[i]=null;
 			}
-			break；
+			break;
 		case "Friday":
 				for(int i=0;i<12;i++)
 			{
 				if(friday[i].equals(b))
-				   friday[i]="NULL\t";
+				   friday[i]=null;
 			}
-			break；
+			break;
 		case "Saturday":
 				for(int i=0;i<12;i++)
 			{
 				if(saturday.equals(b))
-				   saturday[i]="NULL\t";
+				   saturday[i]=null;
 			}
-			break；
+			break;
 		case "Sunday":
 				for(int i=0;i<12;i++)
 			{
 				if(sunday[i].equals(b))
-				   sunday[i]="NULL\t";
+				   sunday[i]=null;
 			}
-			break；		
+			break;	
 		}
 	}
 	public String getcourse(int dayIndex, int timeIndex) {
