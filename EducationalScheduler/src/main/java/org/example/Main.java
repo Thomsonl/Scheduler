@@ -362,6 +362,10 @@ public class Main {
                     slowprint("Which class would you like to add?\n"); 
                     course = scanner.nextLine();
                     classes classes = findClass(course);
+                    if (classes.getMO() <= classes.getCO()) {
+                        slowprint("The class is full. Please try again.\n");
+                        break;
+                    }
                     timeslot.addcourse(day, classes); //Needs a uniform system with time
                     updateTimeSlot(account); 
                     slowprint("Your updated schedule is:");
@@ -374,7 +378,8 @@ public class Main {
                     slowprint("Which class would you like to drop?\n"); 
                     course = scanner.nextLine();
                     classes = findClass(course);
-                    //timeslot.deletecourse(day, classes); //Needs classes object as argument
+                    timeslot.deletecourse(day, course); //Needs classes object as argument
+                    classes.setCO(classes.getCO() - 1);
                     updateTimeSlot(account);
                     slowprint("Your updated schedule is:");
                     timeslot.printcourse(); 
