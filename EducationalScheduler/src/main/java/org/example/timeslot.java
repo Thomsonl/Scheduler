@@ -37,8 +37,9 @@ public class timeslot {
 		this.sunday = sunday.split(",");
 	}
 
-	public boolean addcourse(String a, classes b)
+	public boolean addcourse(String c, classes b)
 	{
+		String a = (c.substring(0, 1).toUpperCase() + c.substring(1));
 		if(b.getCO()<b.getMO())
 		{
 			switch(a)
@@ -351,8 +352,9 @@ public class timeslot {
 	{
 		ID=id;
 	}
-	public void deletecourse(String a,String b)
+	public void deletecourse(String c,String b)
 	{
+		String a = (c.substring(0, 1).toUpperCase() + c.substring(1));
 		switch(a)
 		{
 		case "Monday":
