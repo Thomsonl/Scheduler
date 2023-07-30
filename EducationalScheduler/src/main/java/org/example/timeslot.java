@@ -48,211 +48,301 @@ public class timeslot {
 				{
 				case"8:00-9:00":
 					monday[0]=b.getCN();
+					break;
 				case"9:00-10:00":
 					monday[1]=b.getCN();
+					break;
 				case"10:00-11:00":
 					monday[2]=b.getCN();
+					break;
 				case"11:00-12:00":
 					monday[3]=b.getCN();
+					break;
 				case"12:00-13:00":
 					monday[4]=b.getCN();
+					break;
 				case"13:00-14:00":
 					monday[5]=b.getCN();
+					break;
 				case"14:00-15:00":
 					monday[6]=b.getCN();
+					break;
 				case"15:00-16:00":
 					monday[7]=b.getCN();
+					break;
 				case"16:00-17:00":
 					monday[8]=b.getCN();
+					break;
 				case"17:00-18:00":
 					monday[9]=b.getCN();
+					break;
 				case"18:00-19:00":
 					monday[10]=b.getCN();
+					break;
 				case"19:00-20:00":
 					monday[11]=b.getCN();
+					break;
 					
 				}
+				break;
 			case "Tuesday":
 				switch(b.gettime())
 				{
 				case"8:00-9:00":
 					tuesday[0]=b.getCN();
+					break;
 				case"9:00-10:00":
 					tuesday[1]=b.getCN();
+					break;
 				case"10:00-11:00":
 					tuesday[2]=b.getCN();
+					break;
 				case"11:00-12:00":
 					tuesday[3]=b.getCN();
+					break;
 				case"12:00-13:00":
 					tuesday[4]=b.getCN();
+					break;
 				case"13:00-14:00":
 					tuesday[5]=b.getCN();
+					break;
 				case"14:00-15:00":
 					tuesday[6]=b.getCN();
+					break;
 				case"15:00-16:00":
 					tuesday[7]=b.getCN();
+					break;
 				case"16:00-17:00":
 					tuesday[8]=b.getCN();
+					break;
 				case"17:00-18:00":
 					tuesday[9]=b.getCN();
+					break;
 				case"18:00-19:00":
 					tuesday[10]=b.getCN();
+					break;
 				case"19:00-20:00":
 					tuesday[11]=b.getCN();
+					break;
 					
 				}
+				break;
 			case "Wednesday":
 				switch(b.gettime())
 				{
 				case"8:00-9:00":
 					wednesday[0]=b.getCN();
+					break;
 				case"9:00-10:00":
 					wednesday[1]=b.getCN();
+					break;
 				case"10:00-11:00":
 					wednesday[2]=b.getCN();
+					break;
 				case"11:00-12:00":
 					wednesday[3]=b.getCN();
+					break;
 				case"12:00-13:00":
 					wednesday[4]=b.getCN();
+					break;
 				case"13:00-14:00":
 					wednesday[5]=b.getCN();
+					break;
 				case"14:00-15:00":
 					wednesday[6]=b.getCN();
+					break;
 				case"15:00-16:00":
 					wednesday[7]=b.getCN();
+					break;
 				case"16:00-17:00":
 					wednesday[8]=b.getCN();
+					break;
 				case"17:00-18:00":
 					wednesday[9]=b.getCN();
+					break;
 				case"18:00-19:00":
 					wednesday[10]=b.getCN();
+					break;
 				case"19:00-20:00":
 					wednesday[11]=b.getCN();
+					break;
 					
 				}
+				break;
 			case "Thursday":
 				switch(b.gettime())
 				{
 				case"8:00-9:00":
 					thursday[0]=b.getCN();
+					break;
 				case"9:00-10:00":
 					thursday[1]=b.getCN();
+					break;
 				case"10:00-11:00":
 					thursday[2]=b.getCN();
+					break;
 				case"11:00-12:00":
 					thursday[3]=b.getCN();
+					break;
 				case"12:00-13:00":
 					thursday[4]=b.getCN();
+					break;
 				case"13:00-14:00":
 					thursday[5]=b.getCN();
+					break;
 				case"14:00-15:00":
 					thursday[6]=b.getCN();
+					break;
 				case"15:00-16:00":
 					thursday[7]=b.getCN();
+					break;
 				case"16:00-17:00":
 					thursday[8]=b.getCN();
+					break;
 				case"17:00-18:00":
 					thursday[9]=b.getCN();
+					break;
 				case"18:00-19:00":
 					thursday[10]=b.getCN();
+					break;
 				case"19:00-20:00":
 					thursday[11]=b.getCN();
+					break;
 					
 				}
+				break;
 			case "Friday":
 				switch(b.gettime())
 				{
 				case"8:00-9:00":
 					friday[0]=b.getCN();
+					break;
 				case"9:00-10:00":
 					friday[1]=b.getCN();
+					break;
 				case"10:00-11:00":
 					friday[2]=b.getCN();
+					break;
 				case"11:00-12:00":
 					friday[3]=b.getCN();
+					break;
 				case"12:00-13:00":
 					friday[4]=b.getCN();
+					break;
 				case"13:00-14:00":
 					friday[5]=b.getCN();
+					break;
 				case"14:00-15:00":
 					friday[6]=b.getCN();
+					break;
 				case"15:00-16:00":
 					friday[7]=b.getCN();
+					break;
 				case"16:00-17:00":
 					friday[8]=b.getCN();
+					break;
 				case"17:00-18:00":
 					friday[9]=b.getCN();
+					break;
 				case"18:00-19:00":
 					friday[10]=b.getCN();
+					break;
 				case"19:00-20:00":
 					friday[11]=b.getCN();
+					break;
 					
 				}
+				break;
 			case "Saturday":
 				switch(b.gettime())
 				{
 				case"8:00-9:00":
 					saturday[0]=b.getCN();
+					break;
 				case"9:00-10:00":
 					saturday[1]=b.getCN();
+					break;
 				case"10:00-11:00":
 					saturday[2]=b.getCN();
+					break;
 				case"11:00-12:00":
 					saturday[3]=b.getCN();
+					break;
 				case"12:00-13:00":
 					saturday[4]=b.getCN();
+					break;
 				case"13:00-14:00":
 					saturday[5]=b.getCN();
+					break;
 				case"14:00-15:00":
 					saturday[6]=b.getCN();
+					break;
 				case"15:00-16:00":
 					saturday[7]=b.getCN();
+					break;
 				case"16:00-17:00":
 					saturday[8]=b.getCN();
+					break;
 				case"17:00-18:00":
 					saturday[9]=b.getCN();
+					break;
 				case"18:00-19:00":
 					saturday[10]=b.getCN();
+					break;
 				case"19:00-20:00":
 					saturday[11]=b.getCN();
+					break;
 					
 				}
+				break;
 			case "Sunday":
 				switch(b.gettime())
 				{
 				case"8:00-9:00":
 					sunday[0]=b.getCN();
+					break;
 				case"9:00-10:00":
 					sunday[1]=b.getCN();
+					break;
 				case"10:00-11:00":
 					sunday[2]=b.getCN();
+					break;
 				case"11:00-12:00":
 					sunday[3]=b.getCN();
+					break;
 				case"12:00-13:00":
 					sunday[4]=b.getCN();
+					break;
 				case"13:00-14:00":
 					sunday[5]=b.getCN();
+					break;
 				case"14:00-15:00":
 					sunday[6]=b.getCN();
+					break;
 				case"15:00-16:00":
 					sunday[7]=b.getCN();
+					break;
 				case"16:00-17:00":
 					sunday[8]=b.getCN();
+					break;
 				case"17:00-18:00":
 					sunday[9]=b.getCN();
+					break;
 				case"18:00-19:00":
 					sunday[10]=b.getCN();
+					break;
 				case"19:00-20:00":
 					sunday[11]=b.getCN();
+					break;
 					
 				}
+				break;
 			}
 			return true;
 		}
 		else
 			return false;
 	}
-	
 	public long getID()
 	{
 		return ID;
