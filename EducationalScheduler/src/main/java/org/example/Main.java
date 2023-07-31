@@ -62,7 +62,7 @@ public class Main {
             }
             //Dialogue
             String username, password, email, name, dob;
-            slowprint("CREATING ACCOUNT\n");
+            slowprint("\nCREATING ACCOUNT\n");
             boolean unique = true;
             do {
                 slowprint("Enter a username: "); 
@@ -229,7 +229,7 @@ public class Main {
             for (Row row : sheet) {
                 Cell cell = row.getCell(0);
                 if (cell != null && cell.getCellType() == CellType.NUMERIC && ID == (long) cell.getNumericCellValue()) {
-                    slowprint("LOADING CLASSES\n");
+                    slowprint("\nLOADING CLASSES\n");
                     timeslot = new timeslot((int) row.getCell(0).getNumericCellValue(), row.getCell(1).getStringCellValue(), row.getCell(2).getStringCellValue(), row.getCell(3).getStringCellValue(), row.getCell(4).getStringCellValue(), row.getCell(5).getStringCellValue(), row.getCell(6).getStringCellValue(), row.getCell(7).getStringCellValue());
                 }
             }
@@ -366,7 +366,7 @@ public class Main {
         timeslot.printcourse();
         boolean cont = true;
         while (cont) { //WHILE LOOP
-            slowprint("Would you like to add or drop classes?\n");//Add or drop classes?
+            slowprint("\nWould you like to add or drop classes?\n");//Add or drop classes?
             slowprint("1: Add | 2: Drop | 3: Exit\n");
             ans = scanner.nextInt();
             switch (ans){
@@ -375,25 +375,26 @@ public class Main {
                     break;
                 case 1: //Add
                     String day, course;
-                    slowprint("What day would you like to modify?\n");    
+                    slowprint("\nWhat day would you like to modify?\n");    
                     scanner.nextLine();
                     day = scanner.nextLine();
+                    System.out.println();
                     printClassesInfo(readClassesFromSheet()); 
                     boolean found = false;
                     while(!found){
                         try{
-                            slowprint("Which class would you like to add?\n");
+                            slowprint("\nWhich class would you like to add?\n");
                             course = scanner.nextLine();
                             classes classes = findClass(course);
                             if (classes.getMO() <= classes.getCO()) {
-                                slowprint("The class is full. Please try again.\n");
+                                slowprint("\nThe class is full. Please try again.\n");
                                 break;
                             }
                             classes.setCO(classes.getCO() + 1);
                             timeslot.addcourse(day, classes); //Needs a uniform system with time
                             updateTimeSlot(account);
                             updateClassOccupancy(classes);
-                            slowprint("Your updated schedule is:");
+                            slowprint("\nYour updated schedule is:\n");
                             timeslot.printcourse();
                             found=true;
                         }catch (ClassesNotFoundException e){
@@ -402,13 +403,13 @@ public class Main {
                     } 
                     break;
                 case 2: //Drop
-                    slowprint("What day would you like to modify?\n");
+                    slowprint("\nWhat day would you like to modify?\n");
                     scanner.nextLine();
                     day = scanner.nextLine();
                     found = false;
                     while(!found)
                     {
-                        slowprint("Which class would you like to drop?\n");
+                        slowprint("\nWhich class would you like to drop?\n");
                         course = scanner.nextLine();
                         try {
                             classes classes = findClass(course);
@@ -416,7 +417,7 @@ public class Main {
                             timeslot.deletecourse(day, classes); //Needs classes object as argument
                             updateTimeSlot(account);
                             updateClassOccupancy(classes);
-                            slowprint("Your updated schedule is:");
+                            slowprint("\nYour updated schedule is:\n");
                             timeslot.printcourse();
                             found=true;
                         }catch (ClassesNotFoundException e){
