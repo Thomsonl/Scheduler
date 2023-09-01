@@ -1,18 +1,31 @@
+# Educational Schedule Manager
+
+Welcome to the Educational Schedule Manager! This Java-based application is designed to simplify the management of educational schedules for students and educators. Whether you're a student looking to optimize your class timetable or an educator seeking to streamline course coordination, our platform is here to help.
+
+## Features
+
+- **User-Friendly Interface:** Our platform offers an intuitive and easy-to-navigate interface, ensuring a hassle-free scheduling experience.
+
+- **Personalized Schedules:** Tailor your schedule to your unique needs, allowing for efficient management of classes and extracurricular activities.
+
+- **Class Information Database:** Access a comprehensive database of classes with detailed descriptions, timetables, and occupancy information to make informed decisions.
+
 ## Getting Started
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+To get started with the Educational Schedule Manager, follow these steps:
 
-## Folder Structure
+1. **Clone the Repository:** `git clone https://github.com/yourusername/educational-schedule-manager.git`
 
-The workspace contains two folders by default, where:
+2. **Build and Run:** Open the project in your favorite Java IDE and build/run the `Main.java` file.
 
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
+3. **Create an Account:** Use the application to create an account or log in if you already have one.
 
-Meanwhile, the compiled output files will be generated in the `bin` folder by default.
+4. **Explore and Personalize:** Explore available classes, personalize your schedule, and start optimizing your educational journey!
 
-> If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
+### Contributors
 
-## Dependency Management
+- **Thomson Lee** - Leadership & Design
+- **Ling Lin** - Accounts
+- **Chang Luo** - Timeslots & Classes
 
-The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
+Enjoy using the Educational Schedule Manager!
